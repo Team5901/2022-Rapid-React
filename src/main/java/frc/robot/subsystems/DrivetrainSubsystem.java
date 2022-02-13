@@ -11,9 +11,8 @@ import com.ctre.phoenix.motorcontrol.FeedbackDevice;
 import com.ctre.phoenix.motorcontrol.can.WPI_TalonFX;
 
 import edu.wpi.first.wpilibj.ADXRS450_Gyro;
-import edu.wpi.first.wpilibj.Solenoid;
-import edu.wpi.first.wpilibj.SpeedControllerGroup;
 import edu.wpi.first.wpilibj.drive.DifferentialDrive;
+import edu.wpi.first.wpilibj.motorcontrol.MotorControllerGroup;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import frc.robot.Constants;
@@ -27,12 +26,12 @@ public class DrivetrainSubsystem extends SubsystemBase {
   private final WPI_TalonFX rightRearDriveMotor = new WPI_TalonFX(RobotPorts.kRightRearMotor);
 
   // The motors on the left side of the drive.
-  private final SpeedControllerGroup m_leftMotors =
-      new SpeedControllerGroup(leftFrontDriveMotor, leftRearDriveMotor);
+  private final MotorControllerGroup m_leftMotors =
+      new MotorControllerGroup(leftFrontDriveMotor, leftRearDriveMotor);
 
   // The motors on the right side of the drive.
-  private final SpeedControllerGroup m_rightMotors =
-      new SpeedControllerGroup(rightFrontDriveMotor,rightRearDriveMotor);
+  private final MotorControllerGroup m_rightMotors =
+      new MotorControllerGroup(rightFrontDriveMotor,rightRearDriveMotor);
 
   // The robot's drive
   private final DifferentialDrive m_drive = new DifferentialDrive(m_leftMotors, m_rightMotors);
@@ -40,8 +39,8 @@ public class DrivetrainSubsystem extends SubsystemBase {
   // The Gyro
   private final ADXRS450_Gyro m_gyro = new ADXRS450_Gyro();
 
-  // Shifter Solenoid
-  private final Solenoid SolarNoise = new Solenoid(RobotPorts.kShifterSolenoid);
+  // Shifter Solenoid - NOT USED IN 2022
+  //private final Solenoid SolarNoise = new Solenoid(RobotPorts.kShifterSolenoid);
 
   public DrivetrainSubsystem() {
     // Sets the distance per pulse for the encoders

@@ -10,12 +10,10 @@ package frc.robot.subsystems;
 import com.ctre.phoenix.motorcontrol.ControlMode;
 import com.ctre.phoenix.motorcontrol.FeedbackDevice;
 import com.ctre.phoenix.motorcontrol.can.WPI_TalonFX;
-import com.ctre.phoenix.motorcontrol.can.WPI_TalonSRX;
-
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
+import frc.robot.Constants.RobotPorts;
 import frc.robot.Constants.ShooterConstants;
-import com.ctre.phoenix.motorcontrol.can.WPI_VictorSPX;
 
 
 
@@ -23,43 +21,43 @@ public class ShooterSubsystem extends SubsystemBase {
   /**
    * Creates a new ShooterSubsystem.
    */
-  private final WPI_TalonFX mav = new WPI_TalonFX(10);
+  private final WPI_TalonFX mav = new WPI_TalonFX(RobotPorts.kShooterMotor);
 
    public ShooterSubsystem() {
 
     /* Config the peak and nominal outputs */
-    mav.configSelectedFeedbackSensor(FeedbackDevice.IntegratedSensor, 0, 0);
+    ShooterMotor.configSelectedFeedbackSensor(FeedbackDevice.IntegratedSensor, 0, 0);
 
     /* Config the peak and nominal outputs */
-    mav.configNominalOutputForward(0, ShooterConstants.kTimeoutMs);
-    mav.configNominalOutputReverse(0, ShooterConstants.kTimeoutMs);
-    mav.configPeakOutputForward(1, ShooterConstants.kTimeoutMs);
-    mav.configPeakOutputReverse(-1, ShooterConstants.kTimeoutMs);
+    ShooterMotor.configNominalOutputForward(0, ShooterConstants.kTimeoutMs);
+    ShooterMotor.configNominalOutputReverse(0, ShooterConstants.kTimeoutMs);
+    ShooterMotor.configPeakOutputForward(1, ShooterConstants.kTimeoutMs);
+    ShooterMotor.configPeakOutputReverse(-1, ShooterConstants.kTimeoutMs);
 
     // Reverse motor direction
-    mav.setInverted(false);
+    ShooterMotor.setInverted(false);
 
     //Set PID values
-    mav.config_kF(ShooterConstants.kPIDLoopIdx, ShooterConstants.kF, 0);
-    mav.config_kP(ShooterConstants.kPIDLoopIdx, ShooterConstants.kP, 0);
-    mav.config_kI(ShooterConstants.kPIDLoopIdx, ShooterConstants.kI, 0);
-    mav.config_kD(ShooterConstants.kPIDLoopIdx, ShooterConstants.kD, 0);
-    mav.configClosedloopRamp(1);
-    mav.setSensorPhase(true);
+    ShooterMotor.config_kF(ShooterConstants.kPIDLoopIdx, ShooterConstants.kF, 0);
+    ShooterMotor.config_kP(ShooterConstants.kPIDLoopIdx, ShooterConstants.kP, 0);
+    ShooterMotor.config_kI(ShooterConstants.kPIDLoopIdx, ShooterConstants.kI, 0);
+    ShooterMotor.config_kD(ShooterConstants.kPIDLoopIdx, ShooterConstants.kD, 0);
+    ShooterMotor.configClosedloopRamp(1);
+    ShooterMotor.setSensorPhase(true);
   }
 
   public void shooterSpeedUp(double RPM){
       double targetVelocity_UnitsPer100ms = RPM * 2048 / 600;
-      mav.set(ControlMode.Velocity, targetVelocity_UnitsPer100ms);
+      ShooterMotor.set(ControlMode.Velocity, targetVelocity_UnitsPer100ms);
  
   }
 
   public double getShooterRPM(){
-      return (mav.getSelectedSensorVelocity()/2048*600);
+      return (ShooterMotor.getSelectedSensorVelocity()/2048*600);
   }
 
   public void stopShooter(){
-    mav.stopMotor();
+    ShooterMotor.stopMotor();
   }
 
   @Override

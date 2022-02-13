@@ -17,30 +17,31 @@ package frc.robot;
  */
 public final class Constants {
 
+    //#################### MOTOR CONTROLLER/SOLENOID IDS ####################
+
     public static final class RobotPorts{
 
-        //CAN IDs
+        //CAN IDs for Motor Controllers
         public static final int kLeftFrontMotor = 1;
         public static final int kLeftRearMotor = 3;
         public static final int kRightFrontMotor = 0;
         public static final int kRightRearMotor = 2;
         public static final int kIntakeMotor = 4;
-        public static final int kConveyorMotor = 5;
-        public static final int kLeftClimberMotor = 6;
-        public static final int kRightClimberMotor = 7;
+        //public static final int kConveyorMotor = 5;
+        //public static final int kLeftClimberMotor = 6;
+        //public static final int kRightClimberMotor = 7;
         public static final int kShooterMotor = 10;
 
         //Pneumatic Control Module ports
-        public static final int kShifterSolenoid = 3;
-        public static final int kIntakeSolenoid = 7;
-
-
-
-        public static final int[] kLeftEncoderPorts = new int[]{0, 1};
-        public static final int[] kRightEncoderPorts = new int[]{2, 3};
+        //public static final int kShifterSolenoid = 3;
+        public static final int kIntakeSolenoid = 0;
+        //public static final int[] kLeftEncoderPorts = new int[]{0, 1};
+        //public static final int[] kRightEncoderPorts = new int[]{2, 3};
 
 
     }
+    //#################### DRIVETRAIN CONSTANTS ####################
+
     public static final class DriveConstants {
         //Drivetrain Parameters
         public static final double kLowSpeedRatio = 0.7;
@@ -74,11 +75,13 @@ public final class Constants {
 
         //Gyro
     }
-    //intake
+    //#################### INTAKE CONSTANTS ####################
+
     public static final class IntakeConstants {
         public static final double kIntakeSpeed = 0.75; // works with bumper
         public static final double kConveyorSpeed = 0.75;
     }
+    //#################### SHOOTER CONSTANTS ####################
 
     public static final class ShooterConstants{
         
@@ -95,8 +98,8 @@ public final class Constants {
         public static final double kP = 0.1;
         public static final double kI = 0;
         public static final double kD = 0.001;
-}
-    //Climber motors
+    }
+    //#################### CLIMBER CONSTANTS ####################
 
     public static final class ClimberConstants{
 

@@ -123,21 +123,6 @@ public class DrivetrainSubsystem extends SubsystemBase {
     m_drive.setMaxOutput(maxOutput);
   }
 
-  //shiftIn pulls in
-  public void shiftIn() {
-    SolarNoise.set(false);
-  
-  }
-  //shiftOut pushes Out
-  public void shiftOut(){
-    SolarNoise.set(true);
-
-  }
-  
-  public boolean shiftStatus(){
-    return SolarNoise.get();
-  }
-
   @Override
   public void periodic() {
     SmartDashboard.putNumber("Distance Traveled",getAverageEncoderDistance());

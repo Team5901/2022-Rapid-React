@@ -8,6 +8,7 @@
 package frc.robot.subsystems;
 
 import com.ctre.phoenix.motorcontrol.FeedbackDevice;
+import com.ctre.phoenix.motorcontrol.TalonFXInvertType;
 import com.ctre.phoenix.motorcontrol.can.WPI_TalonFX;
 
 import edu.wpi.first.wpilibj.ADXRS450_Gyro;
@@ -25,13 +26,16 @@ public class DrivetrainSubsystem extends SubsystemBase {
   private final WPI_TalonFX rightFrontDriveMotor = new WPI_TalonFX(RobotPorts.kRightFrontMotor);
   private final WPI_TalonFX rightRearDriveMotor = new WPI_TalonFX(RobotPorts.kRightRearMotor);
 
-  // The motors on the left side of the drive.
+   // The motors on the left side of the drive.
   private final MotorControllerGroup m_leftMotors =
       new MotorControllerGroup(leftFrontDriveMotor, leftRearDriveMotor);
 
   // The motors on the right side of the drive.
   private final MotorControllerGroup m_rightMotors =
       new MotorControllerGroup(rightFrontDriveMotor,rightRearDriveMotor);
+
+  final TalonFXInvertType kInvertType = TalonFXInvertType.Clockwise;
+
 
   // The robot's drive
   private final DifferentialDrive m_drive = new DifferentialDrive(m_leftMotors, m_rightMotors);
@@ -46,6 +50,9 @@ public class DrivetrainSubsystem extends SubsystemBase {
     // Sets the distance per pulse for the encoders
     leftFrontDriveMotor.configSelectedFeedbackSensor(FeedbackDevice.IntegratedSensor, 0, 0);
     rightFrontDriveMotor.configSelectedFeedbackSensor(FeedbackDevice.IntegratedSensor, 0, 0);
+
+    rightRearDriveMotor.setInverted(kInvertType);
+    rightFrontDriveMotor.setInverted(kInvertType);
 
     leftFrontDriveMotor.configOpenloopRamp(0.3,10);
     leftRearDriveMotor.configOpenloopRamp(0.3,10);

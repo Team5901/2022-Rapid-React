@@ -31,6 +31,8 @@ import frc.robot.commands.AutoAim;
 import frc.robot.commands.AutoDrive;
 import frc.robot.commands.AutoReverse;
 import frc.robot.commands.AutoTurn;
+import frc.robot.commands.LoadCargoIn;
+import frc.robot.commands.ShootHigh;
 import frc.robot.subsystems.DrivetrainSubsystem;
 import frc.robot.subsystems.IntakeSubsystem;
 import frc.robot.subsystems.ShooterSubsystem;
@@ -103,8 +105,16 @@ public class RobotContainer {
 
     new JoystickButton(Controller1, Button.kRightBumper.value)
     .whenHeld(new ActivateIntake(m_IntakeSubsystem));
+
     new JoystickButton(Controller1, Button.kA.value)
     .whenHeld(new IntakeOut(m_IntakeSubsystem));
+
+    new JoystickButton(Controller1, Button.kY.value)
+    .whenHeld(new LoadCargoIn(m_IntakeSubsystem));
+
+    new JoystickButton(Controller1, Button.kB.value)
+    .whenHeld(new ShootHigh(m_ShooterSubsystem));
+
     
 
     

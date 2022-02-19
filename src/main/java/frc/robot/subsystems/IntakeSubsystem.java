@@ -6,6 +6,7 @@
 
 package frc.robot.subsystems;
 
+import com.ctre.phoenix.motorcontrol.can.WPI_TalonFX;
 import com.ctre.phoenix.motorcontrol.can.WPI_TalonSRX;
 
 import edu.wpi.first.wpilibj.PneumaticsModuleType;
@@ -15,11 +16,13 @@ import frc.robot.Constants.IntakeConstants;
 import frc.robot.Constants.RobotPorts;
 
 
+
 public class IntakeSubsystem extends SubsystemBase {
   
   //Declare motors/solenoids/sensors related to intake subsystem here
   private final WPI_TalonSRX IntakeMotor = new WPI_TalonSRX(RobotPorts.kIntakeMotor);
   private final Solenoid IntakeSolenoid = new Solenoid(PneumaticsModuleType.CTREPCM,0);
+  private final WPI_TalonSRX LoadingMotor = new WPI_TalonSRX(RobotPorts.kLoadingMotor);
 
   public IntakeSubsystem() {
   }
@@ -33,21 +36,34 @@ public class IntakeSubsystem extends SubsystemBase {
     //set motor to output in positive direction
     IntakeMotor.set(-IntakeConstants.kIntakeSpeed);
   }
-
   public void IntakeStop(){
     //stops the motor
     IntakeMotor.stopMotor();
   }
-
   public void PistonOut() {
     //extends piston out
     IntakeSolenoid.set(true);
   }
-  
+
   public void PistonIn() {
     //retracts piston in
     IntakeSolenoid.set(false);
   }
+
+  public void LoaderIn(){
+    //Pull ball in loader
+    LoadingMotor.set(0.5);
+  }
+
+  public void LoaderOut(){ 
+    //Push ball out of loader
+    LoadingMotor.set(-0.5); 
+  }
+
+ public void  LoaderStop(){
+    LoadingMotor.stopMotor();
+  }
+
   @Override
   public void periodic()
    {

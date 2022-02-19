@@ -27,10 +27,11 @@ public final class Constants {
         public static final int kRightFrontMotor = 0;
         public static final int kRightRearMotor = 2;
         public static final int kIntakeMotor = 6;
+        public static final int kLoadingMotor = 4;
         //public static final int kConveyorMotor = 5;
         //public static final int kLeftClimberMotor = 6;
         //public static final int kRightClimberMotor = 7;
-        public static final int kShooterMotor = 10;
+        public static final int kShooterMotor = 5;
 
         //Pneumatic Control Module ports
         //public static final int kShifterSolenoid = 3;
@@ -47,7 +48,7 @@ public final class Constants {
         public static final double kLowSpeedRatio = 0.7;
         public static final double kHighSpeedRatio = 0.7;
         public static final double kLimitTurnRatio = 0.5;
-
+        
         public static final double kAutoSpeedRatio = 0.5;           //Adjusts how quickly we drive straight in auto
         public static final double kAutoDistanceError = 20;         //Threshold acceptable distance error for auto
         public static final double kAutoMinFwdRatio = 0;            //Minimum power required to move robot
@@ -78,17 +79,17 @@ public final class Constants {
     //#################### INTAKE CONSTANTS ####################
 
     public static final class IntakeConstants {
-        public static final double kIntakeSpeed = 0.75; // works with bumper
-        public static final double kConveyorSpeed = 0.75;
+        public static final double kIntakeSpeed = 0.3; // works with bumper
+        public static final double kLoadingSpeed = 0.05;
     }
     //#################### SHOOTER CONSTANTS ####################
 
     public static final class ShooterConstants{
         
-        public static final double kShooter_LineRPM = 3750; //Initiation
-        public static final double kShooter_17RPM = 5000; //Trench
-        public static final double kShooter_passRPM = 500; //pass
-
+        public static final double kShoot_highRPM = 2000; //Initiation
+        //public static final double kShooter_17RPM = 5000; //Trench
+        //public static final double kShooter_passRPM = 500; //pass
+     
         public static final int kMotorPort = 5;
         public static final int kTimeoutMs = 30;
     	public static final int kSlotIdx = 0;

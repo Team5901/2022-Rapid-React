@@ -65,5 +65,4 @@ public class ShooterSubsystem extends SubsystemBase {
     SmartDashboard.putNumber("Shooter RPM",getShooterRPM());
     //This method will be called once per scheduler run
   }
-
 }

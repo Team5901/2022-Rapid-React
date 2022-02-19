@@ -66,7 +66,7 @@ public class DrivetrainSubsystem extends SubsystemBase {
   
     double y = Math.pow(rot,3.0);
     System.out.println("1st x: " + x);
-    m_drive.arcadeDrive(Math.max(-0.8,Math.min(0.8,x)),Math.max(-0.6,Math.min(0.6,y)));
+    m_drive.arcadeDrive(Math.max(-1,Math.min(1,x)),Math.max(-0.6,Math.min(0.6,y)));
 
     System.out.println("2nd x: " + x);
   }

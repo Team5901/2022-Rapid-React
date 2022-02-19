@@ -26,7 +26,7 @@ public final class Constants {
         public static final int kLeftRearMotor = 3;
         public static final int kRightFrontMotor = 0;
         public static final int kRightRearMotor = 2;
-        public static final int kIntakeMotor = 4;
+        public static final int kIntakeMotor = 6;
         //public static final int kConveyorMotor = 5;
         //public static final int kLeftClimberMotor = 6;
         //public static final int kRightClimberMotor = 7;

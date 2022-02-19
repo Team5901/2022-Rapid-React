@@ -26,6 +26,7 @@ import edu.wpi.first.wpilibj.XboxController.Button;
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import frc.robot.commands.ActivateIntake;
+import frc.robot.commands.IntakeOut;
 import frc.robot.commands.AutoAim;
 import frc.robot.commands.AutoDrive;
 import frc.robot.commands.AutoReverse;
@@ -102,6 +103,8 @@ public class RobotContainer {
 
     new JoystickButton(Controller1, Button.kRightBumper.value)
     .whenHeld(new ActivateIntake(m_IntakeSubsystem));
+    new JoystickButton(Controller1, Button.kA.value)
+    .whenHeld(new IntakeOut(m_IntakeSubsystem));
     
 
     

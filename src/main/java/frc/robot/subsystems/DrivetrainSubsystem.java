@@ -8,6 +8,7 @@
 package frc.robot.subsystems;
 
 import com.ctre.phoenix.motorcontrol.FeedbackDevice;
+import com.ctre.phoenix.motorcontrol.TalonFXInvertType;
 import com.ctre.phoenix.motorcontrol.can.WPI_TalonFX;
 
 import edu.wpi.first.wpilibj.ADXRS450_Gyro;
@@ -25,13 +26,16 @@ public class DrivetrainSubsystem extends SubsystemBase {
   private final WPI_TalonFX rightFrontDriveMotor = new WPI_TalonFX(RobotPorts.kRightFrontMotor);
   private final WPI_TalonFX rightRearDriveMotor = new WPI_TalonFX(RobotPorts.kRightRearMotor);
 
-  // The motors on the left side of the drive.
+   // The motors on the left side of the drive.
   private final MotorControllerGroup m_leftMotors =
       new MotorControllerGroup(leftFrontDriveMotor, leftRearDriveMotor);
 
   // The motors on the right side of the drive.
   private final MotorControllerGroup m_rightMotors =
       new MotorControllerGroup(rightFrontDriveMotor,rightRearDriveMotor);
+
+  final TalonFXInvertType kInvertType = TalonFXInvertType.Clockwise;
+
 
   // The robot's drive
   private final DifferentialDrive m_drive = new DifferentialDrive(m_leftMotors, m_rightMotors);
@@ -47,6 +51,9 @@ public class DrivetrainSubsystem extends SubsystemBase {
     leftFrontDriveMotor.configSelectedFeedbackSensor(FeedbackDevice.IntegratedSensor, 0, 0);
     rightFrontDriveMotor.configSelectedFeedbackSensor(FeedbackDevice.IntegratedSensor, 0, 0);
 
+    rightRearDriveMotor.setInverted(kInvertType);
+    rightFrontDriveMotor.setInverted(kInvertType);
+
     leftFrontDriveMotor.configOpenloopRamp(0.3,10);
     leftRearDriveMotor.configOpenloopRamp(0.3,10);
     rightFrontDriveMotor.configOpenloopRamp(0.3,10);
@@ -59,7 +66,7 @@ public class DrivetrainSubsystem extends SubsystemBase {
   
     double y = Math.pow(rot,3.0);
     System.out.println("1st x: " + x);
-    m_drive.arcadeDrive(Math.max(-0.8,Math.min(0.8,x)),Math.max(-0.6,Math.min(0.6,y)));
+    m_drive.arcadeDrive(Math.max(-1,Math.min(1,x)),Math.max(-0.6,Math.min(0.6,y)));
 
     System.out.println("2nd x: " + x);
   }
@@ -121,21 +128,6 @@ public class DrivetrainSubsystem extends SubsystemBase {
 
   public void setMaxOutput(double maxOutput) {
     m_drive.setMaxOutput(maxOutput);
-  }
-
-  //shiftIn pulls in
-  public void shiftIn() {
-    SolarNoise.set(false);
-  
-  }
-  //shiftOut pushes Out
-  public void shiftOut(){
-    SolarNoise.set(true);
-
-  }
-  
-  public boolean shiftStatus(){
-    return SolarNoise.get();
   }
 
   @Override

@@ -21,7 +21,7 @@ public class ShooterSubsystem extends SubsystemBase {
   /**
    * Creates a new ShooterSubsystem.
    */
-  private final WPI_TalonFX mav = new WPI_TalonFX(RobotPorts.kShooterMotor);
+  private final WPI_TalonFX ShooterMotor = new WPI_TalonFX(RobotPorts.kShooterMotor);
 
    public ShooterSubsystem() {
 
@@ -65,5 +65,4 @@ public class ShooterSubsystem extends SubsystemBase {
     SmartDashboard.putNumber("Shooter RPM",getShooterRPM());
     //This method will be called once per scheduler run
   }
-
 }

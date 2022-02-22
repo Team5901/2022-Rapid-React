@@ -7,6 +7,7 @@
 
 package frc.robot;
 
+import edu.wpi.first.cameraserver.CameraServer;
 import edu.wpi.first.wpilibj.TimedRobot;
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
@@ -43,6 +44,7 @@ public class Robot extends TimedRobot {
     m_robotContainer = new RobotContainer();
     
     //auto = new SendableChooser<>();
+    CameraServer.startAutomaticCapture();
 
     SendableChooser<String> auto = new SendableChooser<String>();
 

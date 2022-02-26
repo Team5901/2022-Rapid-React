@@ -35,7 +35,7 @@ public final class Constants {
 
         //Pneumatic Control Module ports
         //public static final int kShifterSolenoid = 3;
-        public static final int kIntakeSolenoid = 0;
+        public static final int kIntakeSolenoid = 1;
         //public static final int[] kLeftEncoderPorts = new int[]{0, 1};
         //public static final int[] kRightEncoderPorts = new int[]{2, 3};
 

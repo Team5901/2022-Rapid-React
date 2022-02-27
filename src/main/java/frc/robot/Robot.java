@@ -44,6 +44,12 @@ public class Robot extends TimedRobot {
     m_robotContainer = new RobotContainer();
     
     //auto = new SendableChooser<>();
+    
+    // Get the UsbCamera from CameraServer
+    UsbCamera camera = CameraServer.startAutomaticCapture();
+    // Set the resolution
+    camera.setResolution(320, 240);
+    
 
     SendableChooser<String> auto = new SendableChooser<String>();
 
@@ -99,7 +105,7 @@ public class Robot extends TimedRobot {
     m_autonomousCommand = m_robotContainer.getAutonomousCommand();
 
     System.out.println(m_autonomousCommand != null);
-    
+
     // schedule the autonomous command (example)
     if (m_autonomousCommand != null) {
       m_autonomousCommand.schedule();

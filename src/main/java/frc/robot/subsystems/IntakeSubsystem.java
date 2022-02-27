@@ -52,12 +52,12 @@ public class IntakeSubsystem extends SubsystemBase {
 
   public void LoaderIn(){
     //Pull ball in loader
-    LoadingMotor.set(0.5);
+    LoadingMotor.set(IntakeConstants.kLoaderSpeed);
   }
 
   public void LoaderOut(){ 
     //Push ball out of loader
-    LoadingMotor.set(-0.5); 
+    LoadingMotor.set(-IntakeConstants.kLoaderSpeed); 
   }
 
  public void  LoaderStop(){

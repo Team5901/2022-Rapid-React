@@ -22,7 +22,7 @@ public class AutoDrive extends CommandBase {
   public AutoDrive(double distance, DrivetrainSubsystem drive) {
     // Use addRequirements() here to declare subsystem dependencies.
     //m_DrivetrainSubsystem = subsystem;
-    //addRequirements();
+    addRequirements(drive);
     m_distance = distance;
     m_DrivetrainSubsystem = drive;
   }
@@ -57,6 +57,7 @@ public class AutoDrive extends CommandBase {
   @Override
   public boolean isFinished() {
     System.out.println("AutoDrive isFinished function");
+    System.out.println(Math.abs(m_DrivetrainSubsystem.getAverageEncoderDistance()-m_distance) <= Constants.DriveConstants.kAutoDistanceError);
     return Math.abs(m_DrivetrainSubsystem.getAverageEncoderDistance()-m_distance) <=  Constants.DriveConstants.kAutoDistanceError;
   }
 }

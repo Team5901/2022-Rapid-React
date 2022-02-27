@@ -10,6 +10,7 @@ package frc.robot;
 import edu.wpi.first.cameraserver.CameraServer;
 import edu.wpi.first.cscore.UsbCamera;
 import edu.wpi.first.wpilibj.TimedRobot;
+import edu.wpi.first.wpilibj.Timer;
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.Command;
@@ -43,7 +44,7 @@ public class Robot extends TimedRobot {
     // Instantiate our RobotContainer.  This will perform all our button bindings, and put our
     // autonomous chooser on the dashboard.
     m_robotContainer = new RobotContainer();
-    
+
     //auto = new SendableChooser<>();
     
     // Get the UsbCamera from CameraServer
@@ -54,11 +55,7 @@ public class Robot extends TimedRobot {
 
     SendableChooser<String> auto = new SendableChooser<String>();
 
-    
-    CameraServer.startAutomaticCapture();
-    
 
-  
     //try with addOption
     
     /*
@@ -104,7 +101,6 @@ public class Robot extends TimedRobot {
   @Override
   public void autonomousInit() {
     m_autonomousCommand = m_robotContainer.getAutonomousCommand();
-
     System.out.println(m_autonomousCommand != null);
 
     // schedule the autonomous command (example)

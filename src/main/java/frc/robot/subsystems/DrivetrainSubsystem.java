@@ -51,6 +51,8 @@ public class DrivetrainSubsystem extends SubsystemBase {
     leftFrontDriveMotor.configSelectedFeedbackSensor(FeedbackDevice.IntegratedSensor, 0, 0);
     rightFrontDriveMotor.configSelectedFeedbackSensor(FeedbackDevice.IntegratedSensor, 0, 0);
 
+    m_drive.setSafetyEnabled(false);
+
     rightRearDriveMotor.setInverted(kInvertType);
     rightFrontDriveMotor.setInverted(kInvertType);
 
@@ -67,8 +69,10 @@ public class DrivetrainSubsystem extends SubsystemBase {
     double y = Math.pow(rot,3.0);
     //System.out.println("1st x: " + x);
     m_drive.arcadeDrive(Math.max(-1,Math.min(1,x)),Math.max(-0.6,Math.min(0.6,y)));
+    
+    //System.out.println("arcade x: " + Math.max(-1,Math.min(1,x)));
+    //System.out.println("arcade y: " + Math.max(-.6,Math.min(0.6,y)));
 
-    //System.out.println("2nd x: " + x);
   }
   
   public void AutoDroive(double distance) {
@@ -78,7 +82,7 @@ public class DrivetrainSubsystem extends SubsystemBase {
     System.out.println("Error: " + error);
     //if distance is positive and error is greater than 
     if(error > Constants.DriveConstants.kAutoDistanceError){      
-      cougarDrive(1, -m_gyro.getAngle()*Constants.DriveConstants.kAutoTurnRatio);
+      cougarDrive(1.0, -m_gyro.getAngle()*Constants.DriveConstants.kAutoTurnRatio);
       System.out.println("Auto Speed Ratio: " + Constants.DriveConstants.kAutoSpeedRatio);
       System.out.println("alkjdjdsah");
     }  

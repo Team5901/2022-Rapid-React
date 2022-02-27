@@ -133,6 +133,6 @@ public class RobotContainer {
   public Command getAutonomousCommand() {
     // An ExampleCommand will run in autonomous
     System.out.println("Hi");
-    return new AutoDrive(100.0,m_DrivetrainSubsystem);  
+    return new AutoDrive(200.0,m_DrivetrainSubsystem);  
   }
 }

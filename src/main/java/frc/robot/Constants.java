@@ -79,8 +79,8 @@ public final class Constants {
     //#################### INTAKE CONSTANTS ####################
 
     public static final class IntakeConstants {
-        public static final double kIntakeSpeed = 0.3; // works with bumper
-        public static final double kLoadingSpeed = 0.05;
+        public static final double kIntakeSpeed = 1.0; // works with bumper
+        public static final double kLoaderSpeed = 0.5;
     }
     //#################### SHOOTER CONSTANTS ####################
 

@@ -28,11 +28,11 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import frc.robot.commands.ActivateIntake;
 import frc.robot.commands.IntakeOut;
 import frc.robot.commands.AutoAim;
-import frc.robot.commands.AutoDrive;
 import frc.robot.commands.AutoReverse;
 import frc.robot.commands.AutoTurn;
 import frc.robot.commands.LoadCargoIn;
 import frc.robot.commands.ShootHigh;
+import frc.robot.commands.AutoDrive;
 import frc.robot.subsystems.DrivetrainSubsystem;
 import frc.robot.subsystems.IntakeSubsystem;
 import frc.robot.subsystems.ShooterSubsystem;
@@ -77,15 +77,15 @@ public class RobotContainer {
     //driverShuffleboardTab.add("LL", limelightFeed).withPosition(0, 0).withSize(15, 8).withProperties(Map.of("Show Crosshair", true, "Show Controls", false));
 
     //Autonomous procedures
-    auto.addOption("AutoDrive", new AutoDrive(0.5, m_DrivetrainSubsystem));
-    auto.addOption("Reverse", new AutoReverse(m_DrivetrainSubsystem));
-    auto.addOption("Auto Turn", new AutoTurn(0, m_DrivetrainSubsystem));
+    //auto.addOption("AutoDrive", new AutoDrive(0.5, m_DrivetrainSubsystem));
+    //auto.addOption("Reverse", new AutoReverse(m_DrivetrainSubsystem));
+    //auto.addOption("Auto Turn", new AutoTurn(0, m_DrivetrainSubsystem));
     //Autonomous positions
-    autou.addOption("Far Left", "Far Left");
-    autou.addOption("Middle Left", "Middle Left");
-    autou.addOption("Middle", "Middle");
-    autou.addOption("Middle Right", "Middle Right");
-    autou.addOption("Far Right", "Far Right");
+    //autou.addOption("Far Left", "Far Left");
+    //autou.addOption("Middle Left", "Middle Left");
+    //autou.addOption("Middle", "Middle");
+    //autou.addOption("Middle Right", "Middle Right");
+    //autou.addOption("Far Right", "Far Right");
 
     //middle, mid l/r, far l/r
 
@@ -132,8 +132,7 @@ public class RobotContainer {
    */
   public Command getAutonomousCommand() {
     // An ExampleCommand will run in autonomous
-    
-   
-    return auto.getSelected();
+    System.out.println("Hi");
+    return new AutoDrive(100.0,m_DrivetrainSubsystem);  
   }
 }

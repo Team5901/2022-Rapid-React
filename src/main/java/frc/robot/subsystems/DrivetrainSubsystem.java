@@ -82,7 +82,7 @@ public class DrivetrainSubsystem extends SubsystemBase {
     System.out.println("Error: " + error);
     //if distance is positive and error is greater than 
     if(error > Constants.DriveConstants.kAutoDistanceError){      
-      cougarDrive(1.0, -m_gyro.getAngle()*Constants.DriveConstants.kAutoTurnRatio);
+      cougarDrive(Constants.DriveConstants.kAutoDrivePower, -m_gyro.getAngle()*Constants.DriveConstants.kAutoTurnRatio);
       System.out.println("Auto Speed Ratio: " + Constants.DriveConstants.kAutoSpeedRatio);
       System.out.println("alkjdjdsah");
     }  

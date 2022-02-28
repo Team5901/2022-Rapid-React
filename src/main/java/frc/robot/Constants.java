@@ -57,7 +57,7 @@ public final class Constants {
         public static final double kAutoAngleError = 1;             //Threshold acceptable angle error for auto
         public static final double kAutoMinRotRatio = .07;          //Minimum power required to turn robot
         
-        public static final double kAutoDrivePower = 0.5;           //autonomous mode power
+        public static final double kAutoDrivePower = 0.8;           //autonomous mode power
         //Vision Paramters
         public static final double kVisionSpeedRatio = 0.2;
         public static final double kVisionTurnRatio = 0.7;

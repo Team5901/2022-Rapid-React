@@ -132,7 +132,8 @@ public class RobotContainer {
    */
   public Command getAutonomousCommand() {
     // An ExampleCommand will run in autonomous
-    System.out.println("Hi");
-    return new AutoDrive(200.0,m_DrivetrainSubsystem);  
+    System.out.println("RUNNING AUTONOMOUS COMMANDS");
+    return new AutoDrive(200.0,m_DrivetrainSubsystem)  
+      .andThen(new ShootHigh(ShooterSubsystem));
   }
 }

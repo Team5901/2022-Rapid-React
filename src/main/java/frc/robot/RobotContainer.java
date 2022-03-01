@@ -113,7 +113,7 @@ public class RobotContainer {
     .whenHeld(new LoadCargoIn(m_IntakeSubsystem));
 
     new JoystickButton(Controller1, Button.kB.value)
-    .whenHeld(new ShootHigh(m_ShooterSubsystem));
+    .whenHeld(new ShootHigh(m_ShooterSubsystem,m_IntakeSubsystem));
 
     
 

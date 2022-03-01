@@ -18,7 +18,7 @@ public class ActivateIntake extends CommandBase {
   @Override
   public void initialize() {
     m_IntakeSubsystem.PistonOut();
-    System.out.println("Intake is working");
+    System.out.println("ACTIVATEINTAKE Command is running");
   }
 
   //This is for the motors on the intake
@@ -26,7 +26,13 @@ public class ActivateIntake extends CommandBase {
   @Override
   public void execute() {
     m_IntakeSubsystem.IntakeIn();
-    System.out.println("Spin intake in");
+
+    if(m_IntakeSubsystem.ballExist()){
+      m_IntakeSubsystem.LoaderIn();
+    }
+    else{
+      m_IntakeSubsystem.LoaderStop();
+    }
   }
 
   // Called once the command ends or is interrupted.
@@ -34,6 +40,7 @@ public class ActivateIntake extends CommandBase {
   public void end(boolean interrupted) {
     m_IntakeSubsystem.PistonIn();
     m_IntakeSubsystem.IntakeStop();
+    m_IntakeSubsystem.LoaderStop();
   }
 
   // Returns true when the command should end.

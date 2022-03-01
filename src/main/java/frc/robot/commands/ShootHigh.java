@@ -5,6 +5,7 @@
 package frc.robot.commands;
 
 import edu.wpi.first.wpilibj2.command.CommandBase;
+import frc.robot.subsystems.IntakeSubsystem;
 import frc.robot.subsystems.ShooterSubsystem;
 import frc.robot.Constants;
 import frc.robot.Constants.ShooterConstants;
@@ -12,9 +13,12 @@ import frc.robot.Constants.ShooterConstants;
 public class ShootHigh extends CommandBase {
   /** Creates a new ShootHigh. */
   final ShooterSubsystem m_ShooterSubsystem;
-  public ShootHigh(ShooterSubsystem subsystem) {
-    m_ShooterSubsystem = subsystem;
-    addRequirements(subsystem);
+  final IntakeSubsystem m_IntakeSubsystem;
+
+  public ShootHigh(ShooterSubsystem subsystem1, IntakeSubsystem subsystem2) {
+    m_ShooterSubsystem = subsystem1;
+    m_IntakeSubsystem = subsystem2;
+    addRequirements();
     // Use addRequirements() here to declare subsystem dependencies.
   }
 
@@ -28,12 +32,18 @@ public class ShootHigh extends CommandBase {
   @Override
   public void execute() {
     m_ShooterSubsystem.shooterSpeedUp(ShooterConstants.kShoot_highRPM);
+
+    if(m_ShooterSubsystem.getShooterRPM() > Constants.ShooterConstants.kShoot_highRPM-250){
+      m_IntakeSubsystem.LoaderIn();
+    }
   }
 
   // Called once the command ends or is interrupted.
   @Override
   public void end(boolean interrupted) {
+    System.out.println("Stopping SHOOTHIGH command - shooter and loader");
     m_ShooterSubsystem.stopShooter();
+    m_IntakeSubsystem.LoaderStop();
   }
 
   // Returns true when the command should end.

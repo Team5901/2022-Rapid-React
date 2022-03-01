@@ -81,13 +81,13 @@ public class DrivetrainSubsystem extends SubsystemBase {
     double error = Math.abs(distance - getAverageEncoderDistance());
     System.out.println("Error: " + error);
     //if distance is positive and error is greater than 
+    SmartDashboard.putNumber("Autodrive Distance to Target", error);
     if(error > Constants.DriveConstants.kAutoDistanceError){      
       cougarDrive(Constants.DriveConstants.kAutoDrivePower, -m_gyro.getAngle()*Constants.DriveConstants.kAutoTurnRatio);
       System.out.println("Auto Speed Ratio: " + Constants.DriveConstants.kAutoSpeedRatio);
-      System.out.println("alkjdjdsah");
     }  
     else {
-      System.out.println("Else Statement");
+      System.out.println("Target reached - Stop");
       cougarDrive(0,0);
     }
   }

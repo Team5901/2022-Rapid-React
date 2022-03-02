@@ -8,6 +8,7 @@
 package frc.robot.subsystems;
 
 import com.ctre.phoenix.motorcontrol.FeedbackDevice;
+import com.ctre.phoenix.motorcontrol.NeutralMode;
 import com.ctre.phoenix.motorcontrol.TalonFXInvertType;
 import com.ctre.phoenix.motorcontrol.can.WPI_TalonFX;
 
@@ -51,15 +52,23 @@ public class DrivetrainSubsystem extends SubsystemBase {
     leftFrontDriveMotor.configSelectedFeedbackSensor(FeedbackDevice.IntegratedSensor, 0, 0);
     rightFrontDriveMotor.configSelectedFeedbackSensor(FeedbackDevice.IntegratedSensor, 0, 0);
 
+    //Sets all motors to brake mode
+    leftFrontDriveMotor.setNeutralMode(NeutralMode.Brake);
+    leftRearDriveMotor.setNeutralMode(NeutralMode.Brake);
+    rightFrontDriveMotor.setNeutralMode(NeutralMode.Brake);
+    rightRearDriveMotor.setNeutralMode(NeutralMode.Brake);
+
     m_drive.setSafetyEnabled(false);
 
+    //Invert right motors
     rightRearDriveMotor.setInverted(kInvertType);
     rightFrontDriveMotor.setInverted(kInvertType);
 
-    leftFrontDriveMotor.configOpenloopRamp(0.3,10);
-    leftRearDriveMotor.configOpenloopRamp(0.3,10);
-    rightFrontDriveMotor.configOpenloopRamp(0.3,10);
-    rightFrontDriveMotor.configOpenloopRamp(0.3,10);
+    //Set open loop ramp - ramps to max throttle over 0.3s 
+    leftFrontDriveMotor.configOpenloopRamp(0.5,10);
+    leftRearDriveMotor.configOpenloopRamp(0.5,10);
+    rightFrontDriveMotor.configOpenloopRamp(0.5,10);
+    rightFrontDriveMotor.configOpenloopRamp(0.5,10);
   }
 
   public void cougarDrive(double fwd, double rot) {
@@ -68,7 +77,7 @@ public class DrivetrainSubsystem extends SubsystemBase {
   
     double y = Math.pow(rot,3.0);
     //System.out.println("1st x: " + x);
-    m_drive.arcadeDrive(Math.max(-0.8,Math.min(0.8,x)),Math.max(-0.6,Math.min(0.6,y)));
+    m_drive.arcadeDrive(Math.max(-1.0,Math.min(1.0,x)),Math.max(-0.5,Math.min(0.5,y)));
     
     //System.out.println("arcade x: " + Math.max(-1,Math.min(1,x)));
     //System.out.println("arcade y: " + Math.max(-.6,Math.min(0.6,y)));

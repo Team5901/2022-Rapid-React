@@ -52,18 +52,7 @@ public class Robot extends TimedRobot {
     camera.setResolution(320, 240);
     
 
-    SendableChooser<String> auto = new SendableChooser<String>();
 
-
-    //try with addOption
-    
-    /*
-    auto.addDefault(FarLeftShoot, new AutoFarLeftShoot5(drive, intake, shoot, see));
-    auto.addDefault(MidShoot, new AutoMidShoot());
-    auto.addDefault(Reverse, new AutoReverse(drive));
-    auto.addDefault(ShootPosition, new AutoShoot3Position(drive, shoot, intake));
-    auto.addDefault(AutoTurn, new AutoTurn(angle, drive));
-    */
     
   }
 
@@ -100,7 +89,6 @@ public class Robot extends TimedRobot {
   @Override
   public void autonomousInit() {
     m_autonomousCommand = m_robotContainer.getAutonomousCommand();
-    System.out.println(m_autonomousCommand != null);
 
     // schedule the autonomous command (example)
     if (m_autonomousCommand != null) {

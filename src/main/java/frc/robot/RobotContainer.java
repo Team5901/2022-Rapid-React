@@ -38,6 +38,7 @@ import frc.robot.subsystems.ShooterSubsystem;
 import frc.robot.subsystems.VisionSubsystem;
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.RunCommand;
+import edu.wpi.first.wpilibj2.command.WaitCommand;
 import edu.wpi.first.wpilibj2.command.button.JoystickButton;
 
 /**
@@ -52,12 +53,9 @@ public class RobotContainer {
   private final VisionSubsystem m_VisionSubsystem = new VisionSubsystem();
   private final IntakeSubsystem m_IntakeSubsystem = new IntakeSubsystem();
   private final ShooterSubsystem m_ShooterSubsystem = new ShooterSubsystem();
-  private final SendableChooser<Command> auto = new SendableChooser<Command>();
-  private final SendableChooser<String> autou = new SendableChooser<String>();
-
+  private final SendableChooser<Command> SelectAuto = new SendableChooser<Command>();
 
   XboxController Controller1 = new XboxController(0);
-  XboxController Controller2 = new XboxController(1);
 
   /**
    * The container for the robot.  Contains subsystems, OI devices, and commands.
@@ -76,19 +74,13 @@ public class RobotContainer {
     //driverShuffleboardTab.add("LL", limelightFeed).withPosition(0, 0).withSize(15, 8).withProperties(Map.of("Show Crosshair", true, "Show Controls", false));
 
     //Autonomous procedures
-    //auto.addOption("AutoDrive", new AutoDrive(0.5, m_DrivetrainSubsystem));
-    //auto.addOption("Reverse", new AutoReverse(m_DrivetrainSubsystem));
-    //auto.addOption("Auto Turn", new AutoTurn(0, m_DrivetrainSubsystem));
-    //Autonomous positions
-    //autou.addOption("Far Left", "Far Left");
-    //autou.addOption("Middle Left", "Middle Left");
-    //autou.addOption("Middle", "Middle");
-    //autou.addOption("Middle Right", "Middle Right");
-    //autou.addOption("Far Right", "Far Right");
+    SelectAuto.setDefaultOption("Drive Backwards", new AutoDrive(-200, m_DrivetrainSubsystem));
+    SelectAuto.addOption("Move Forward and Shoot", new AutoDrive(200.0,m_DrivetrainSubsystem)
+    .andThen(new WaitCommand(1))
+    .andThen(new ShootHigh(m_ShooterSubsystem,m_IntakeSubsystem)));
 
-    //middle, mid l/r, far l/r
-
-    SmartDashboard.putData("Auto Chooser", auto);
+    SmartDashboard.putData("Auto Chooser", SelectAuto);
+    SmartDashboard.putString("Selected Auto Command", SelectAuto.getSelected().getName());
   }
 
   /**
@@ -134,8 +126,10 @@ public class RobotContainer {
     // An ExampleCommand will run in autonomous
 
     System.out.println("RUNNING AUTONOMOUS COMMANDS");
-    return new AutoDrive(200.0,m_DrivetrainSubsystem)  
-      .andThen(new ShootHigh(m_ShooterSubsystem,m_IntakeSubsystem));
+    //return new AutoDrive(200.0,m_DrivetrainSubsystem)  
+    //  .andThen(new ShootHigh(m_ShooterSubsystem,m_IntakeSubsystem));
+
+    return SelectAuto.getSelected();
 
   }
 }

@@ -31,7 +31,6 @@ public class IntakeOut extends CommandBase {
   @Override
   public void execute() {
     m_IntakeSubsystem.IntakeOut();
-    System.out.println("Intake out is working");
   }
 
   // Called once the command ends or is interrupted.

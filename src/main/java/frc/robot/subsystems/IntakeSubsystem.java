@@ -9,6 +9,8 @@ package frc.robot.subsystems;
 import com.ctre.phoenix.motorcontrol.can.WPI_TalonFX;
 import com.ctre.phoenix.motorcontrol.can.WPI_TalonSRX;
 
+import edu.wpi.first.wpilibj.DigitalInput;
+import edu.wpi.first.wpilibj.DigitalOutput;
 import edu.wpi.first.wpilibj.PneumaticsModuleType;
 import edu.wpi.first.wpilibj.Solenoid;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
@@ -21,8 +23,10 @@ public class IntakeSubsystem extends SubsystemBase {
   
   //Declare motors/solenoids/sensors related to intake subsystem here
   private final WPI_TalonSRX IntakeMotor = new WPI_TalonSRX(RobotPorts.kIntakeMotor);
-  private final Solenoid IntakeSolenoid = new Solenoid(PneumaticsModuleType.CTREPCM,RobotPorts.kIntakeSolenoid);
   private final WPI_TalonSRX LoadingMotor = new WPI_TalonSRX(RobotPorts.kLoadingMotor);
+  private final Solenoid IntakeSolenoid = new Solenoid(PneumaticsModuleType.CTREPCM,RobotPorts.kIntakeSolenoid);
+  private final DigitalInput IntakeSensor = new DigitalInput(9);
+
 
   public IntakeSubsystem() {
   }
@@ -63,6 +67,11 @@ public class IntakeSubsystem extends SubsystemBase {
  public void  LoaderStop(){
     LoadingMotor.stopMotor();
   }
+
+  public boolean ballExist(){
+    //reverse input since 1 = no ball 0 = ball
+    return !IntakeSensor.get();
+ }
 
   @Override
   public void periodic()

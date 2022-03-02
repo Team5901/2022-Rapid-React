@@ -49,6 +49,8 @@ public class ShooterSubsystem extends SubsystemBase {
   public void shooterSpeedUp(double RPM){
       double targetVelocity_UnitsPer100ms = RPM * 2048 / 600;
       ShooterMotor.set(ControlMode.Velocity, targetVelocity_UnitsPer100ms);
+
+      SmartDashboard.putNumber("RPM", getShooterRPM());
  
   }
 

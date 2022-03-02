@@ -16,7 +16,7 @@ import edu.wpi.first.wpilibj.drive.DifferentialDrive;
 import edu.wpi.first.wpilibj.motorcontrol.MotorControllerGroup;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
-import frc.robot.Constants;
+import frc.robot.Constants.DriveConstants;
 import frc.robot.Constants.RobotPorts;
 
 public class DrivetrainSubsystem extends SubsystemBase {
@@ -68,7 +68,7 @@ public class DrivetrainSubsystem extends SubsystemBase {
   
     double y = Math.pow(rot,3.0);
     //System.out.println("1st x: " + x);
-    m_drive.arcadeDrive(Math.max(-1,Math.min(1,x)),Math.max(-0.6,Math.min(0.6,y)));
+    m_drive.arcadeDrive(Math.max(-0.8,Math.min(0.8,x)),Math.max(-0.6,Math.min(0.6,y)));
     
     //System.out.println("arcade x: " + Math.max(-1,Math.min(1,x)));
     //System.out.println("arcade y: " + Math.max(-.6,Math.min(0.6,y)));
@@ -76,18 +76,23 @@ public class DrivetrainSubsystem extends SubsystemBase {
   }
   
   public void AutoDroive(double distance) {
-    System.out.println("AutoDroive distance: " + distance);
+
     //find absolute error
-    double error = Math.abs(distance - getAverageEncoderDistance());
-    System.out.println("Error: " + error);
+    //Encoder distance is positive when driving backwards, negative when driving forwards
+    double error = distance + getAverageEncoderDistance();
+    System.out.println("AutoDrive distance: " + distance +" Error:" + error);
+
     //if distance is positive and error is greater than 
-    if(error > Constants.DriveConstants.kAutoDistanceError){      
-      cougarDrive(Constants.DriveConstants.kAutoDrivePower, -m_gyro.getAngle()*Constants.DriveConstants.kAutoTurnRatio);
-      System.out.println("Auto Speed Ratio: " + Constants.DriveConstants.kAutoSpeedRatio);
-      System.out.println("alkjdjdsah");
+    SmartDashboard.putNumber("Autodrive Distance to Target", error);
+    
+    if(Math.abs(error) > DriveConstants.kAutoDistanceError){   
+      
+      //Positive 1st argument = backwards
+      cougarDrive(-Math.signum(distance)*DriveConstants.kAutoSpeedRatio, -m_gyro.getAngle()*DriveConstants.kAutoTurnRatio);
+      System.out.println("Auto Speed Ratio: " + DriveConstants.kAutoSpeedRatio);
     }  
     else {
-      System.out.println("Else Statement");
+      System.out.println("Target reached - Stop");
       cougarDrive(0,0);
     }
   }
@@ -96,8 +101,8 @@ public class DrivetrainSubsystem extends SubsystemBase {
     double angle = m_gyro.getAngle();
     double target = angle + AngleTarget;
 
-    if(Math.abs(target) > Constants.DriveConstants.kAutoAngleError){
-      cougarDrive(0, -Math.signum(target)*(Math.abs(target)*Constants.DriveConstants.kAutoTurnRatio) + Constants.DriveConstants.kAutoMinRotRatio);
+    if(Math.abs(target) > DriveConstants.kAutoAngleError){
+      cougarDrive(0, -Math.signum(target)*(Math.abs(target)*DriveConstants.kAutoTurnRatio) + DriveConstants.kAutoMinRotRatio);
     }
     else {
       cougarDrive(0, 0);

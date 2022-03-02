@@ -28,7 +28,6 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import frc.robot.commands.ActivateIntake;
 import frc.robot.commands.IntakeOut;
 import frc.robot.commands.AutoAim;
-import frc.robot.commands.AutoReverse;
 import frc.robot.commands.AutoTurn;
 import frc.robot.commands.LoadCargoIn;
 import frc.robot.commands.ShootHigh;
@@ -103,6 +102,7 @@ public class RobotContainer {
      * ##### CONTROLLER 1 - PRIMARY #####
      * ##################################*/
 
+    
     new JoystickButton(Controller1, Button.kRightBumper.value)
     .whenHeld(new ActivateIntake(m_IntakeSubsystem));
 
@@ -113,7 +113,7 @@ public class RobotContainer {
     .whenHeld(new LoadCargoIn(m_IntakeSubsystem));
 
     new JoystickButton(Controller1, Button.kB.value)
-    .whenHeld(new ShootHigh(m_ShooterSubsystem));
+    .whenHeld(new ShootHigh(m_ShooterSubsystem,m_IntakeSubsystem));
 
     
 
@@ -132,8 +132,10 @@ public class RobotContainer {
    */
   public Command getAutonomousCommand() {
     // An ExampleCommand will run in autonomous
+
     System.out.println("RUNNING AUTONOMOUS COMMANDS");
     return new AutoDrive(200.0,m_DrivetrainSubsystem)  
       .andThen(new ShootHigh(ShooterSubsystem));
+
   }
 }

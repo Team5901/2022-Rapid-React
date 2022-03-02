@@ -67,11 +67,11 @@ public class DrivetrainSubsystem extends SubsystemBase {
     rightRearDriveMotor.setInverted(kInvertType);
     rightFrontDriveMotor.setInverted(kInvertType);
 
-    //Set open loop ramp - ramps to max throttle over 0.3s 
-    leftFrontDriveMotor.configOpenloopRamp(0.5,10);
-    leftRearDriveMotor.configOpenloopRamp(0.5,10);
-    rightFrontDriveMotor.configOpenloopRamp(0.5,10);
-    rightFrontDriveMotor.configOpenloopRamp(0.5,10);
+    //Set open loop ramp - ramps to max throttle over 0.75s 
+    leftFrontDriveMotor.configOpenloopRamp(0.75,10);
+    leftRearDriveMotor.configOpenloopRamp(0.75,10);
+    rightFrontDriveMotor.configOpenloopRamp(0.75,10);
+    rightFrontDriveMotor.configOpenloopRamp(0.75,10);
   }
 
   public void cougarDrive(double fwd, double rot) {
@@ -80,7 +80,7 @@ public class DrivetrainSubsystem extends SubsystemBase {
   
     double y = Math.pow(rot,3.0);
     //System.out.println("1st x: " + x);
-    m_drive.arcadeDrive(Math.max(-1.0,Math.min(1.0,x)),Math.max(-0.5,Math.min(0.5,y)));
+    m_drive.arcadeDrive(Math.max(-0.8,Math.min(0.8,x)),Math.max(-0.6,Math.min(0.6,y)));
     
     //System.out.println("arcade x: " + Math.max(-1,Math.min(1,x)));
     //System.out.println("arcade y: " + Math.max(-.6,Math.min(0.6,y)));
@@ -90,12 +90,12 @@ public class DrivetrainSubsystem extends SubsystemBase {
   public void AutoDroive(double distance) {
 
     //find absolute error
-    //Encoder distance is positive when driving backwards, negative when driving forwards
-    double error = distance + getAverageEncoderDistance();
+    //Encoder distance: positive = backwards, negative =-forwards
+    double error = distance + Math.signum(distance)*getAverageEncoderDistance();
     System.out.println("AutoDrive distance: " + distance +" Error:" + error);
 
     //if distance is positive and error is greater than 
-    SmartDashboard.putNumber("Autodrive Distance to Target", error);
+
     
     if(Math.abs(error) > DriveConstants.kAutoDistanceError){   
       

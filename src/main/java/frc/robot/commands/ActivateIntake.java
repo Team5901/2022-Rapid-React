@@ -28,7 +28,6 @@ public class ActivateIntake extends CommandBase {
   public void execute() {
     m_IntakeSubsystem.IntakeIn();
     System.out.println(m_IntakeSubsystem.ballExist());
-    SmartDashboard.putBoolean("Ball Exists",m_IntakeSubsystem.ballExist() );
 
     if(m_IntakeSubsystem.ballExist()){
       m_IntakeSubsystem.LoaderIn();

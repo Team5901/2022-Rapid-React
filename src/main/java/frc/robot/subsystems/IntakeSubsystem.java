@@ -13,6 +13,7 @@ import edu.wpi.first.wpilibj.DigitalInput;
 import edu.wpi.first.wpilibj.DigitalOutput;
 import edu.wpi.first.wpilibj.PneumaticsModuleType;
 import edu.wpi.first.wpilibj.Solenoid;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import frc.robot.Constants.IntakeConstants;
 import frc.robot.Constants.RobotPorts;
@@ -76,6 +77,7 @@ public class IntakeSubsystem extends SubsystemBase {
   @Override
   public void periodic()
    {
+     SmartDashboard.getBoolean("Ball Sensor Tripped", ballExist());
     // This method will be called once per scheduler run
   }
 }

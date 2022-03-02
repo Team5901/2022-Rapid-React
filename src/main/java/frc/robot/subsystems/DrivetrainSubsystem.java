@@ -13,6 +13,7 @@ import com.ctre.phoenix.motorcontrol.TalonFXInvertType;
 import com.ctre.phoenix.motorcontrol.can.WPI_TalonFX;
 
 import edu.wpi.first.wpilibj.ADXRS450_Gyro;
+import edu.wpi.first.wpilibj.PowerDistribution;
 import edu.wpi.first.wpilibj.drive.DifferentialDrive;
 import edu.wpi.first.wpilibj.motorcontrol.MotorControllerGroup;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
@@ -21,6 +22,8 @@ import frc.robot.Constants.DriveConstants;
 import frc.robot.Constants.RobotPorts;
 
 public class DrivetrainSubsystem extends SubsystemBase {
+  
+  PowerDistribution PowerDistributionPanel = new PowerDistribution();
   
   private final WPI_TalonFX leftFrontDriveMotor = new WPI_TalonFX(RobotPorts.kLeftFrontMotor);
   private final WPI_TalonFX leftRearDriveMotor = new WPI_TalonFX(RobotPorts.kLeftRearMotor);
@@ -148,10 +151,12 @@ public class DrivetrainSubsystem extends SubsystemBase {
     m_drive.setMaxOutput(maxOutput);
   }
 
+
   @Override
   public void periodic() {
-    SmartDashboard.putNumber("Distance Traveled",getAverageEncoderDistance());
-    SmartDashboard.putNumber("Angle Heading",getAngle());
+    //SmartDashboard.putNumber("Distance Traveled",getAverageEncoderDistance());
+    //SmartDashboard.putNumber("Angle Heading",getAngle());
+    SmartDashboard.putNumber("Energy", PowerDistributionPanel.getTotalEnergy());
     //This method will be called once per scheduler run
   }
 

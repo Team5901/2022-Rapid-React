@@ -17,7 +17,6 @@ import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.CommandScheduler;
 import frc.robot.commands.AutoAim;
 import frc.robot.commands.AutoDrive;
-import frc.robot.commands.AutoReverse;
 import frc.robot.commands.AutoTurn;
 import frc.robot.subsystems.DrivetrainSubsystem;
 import frc.robot.subsystems.IntakeSubsystem;

@@ -49,15 +49,14 @@ public final class Constants {
         public static final double kHighSpeedRatio = 0.7;
         public static final double kLimitTurnRatio = 0.5;
         
-        public static final double kAutoSpeedRatio = 0.5;           //Adjusts how quickly we drive straight in auto
+        public static final double kAutoSpeedRatio = 0.8;           //Adjusts how quickly we drive straight in auto
         public static final double kAutoDistanceError = 20;         //Threshold acceptable distance error for auto
         public static final double kAutoMinFwdRatio = 0;            //Minimum power required to move robot
 
         public static final double kAutoTurnRatio = 0.03;           //Adjusts how quickly we turn in auto         
         public static final double kAutoAngleError = 1;             //Threshold acceptable angle error for auto
         public static final double kAutoMinRotRatio = .07;          //Minimum power required to turn robot
-        
-        public static final double kAutoDrivePower = 0.8;           //autonomous mode power
+
         //Vision Paramters
         public static final double kVisionSpeedRatio = 0.2;
         public static final double kVisionTurnRatio = 0.7;
@@ -81,7 +80,7 @@ public final class Constants {
 
     public static final class IntakeConstants {
         public static final double kIntakeSpeed = 1.0; // works with bumper
-        public static final double kLoaderSpeed = 0.5;
+        public static final double kLoaderSpeed = .9;
     }
     //#################### SHOOTER CONSTANTS ####################
 

@@ -23,7 +23,7 @@ public class IntakeSubsystem extends SubsystemBase {
   
   //Declare motors/solenoids/sensors related to intake subsystem here
   private final WPI_TalonSRX IntakeMotor = new WPI_TalonSRX(RobotPorts.kIntakeMotor);
-  private final WPI_TalonSRX LoadingMotor = new WPI_TalonSRX(RobotPorts.kLoadingMotor);
+  private final WPI_TalonFX LoadingMotor = new WPI_TalonFX(RobotPorts.kLoadingMotor);
   private final Solenoid IntakeSolenoid = new Solenoid(PneumaticsModuleType.CTREPCM,RobotPorts.kIntakeSolenoid);
   private final DigitalInput IntakeSensor = new DigitalInput(9);
 

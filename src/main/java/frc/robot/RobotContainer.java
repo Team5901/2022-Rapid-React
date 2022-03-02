@@ -135,7 +135,7 @@ public class RobotContainer {
 
     System.out.println("RUNNING AUTONOMOUS COMMANDS");
     return new AutoDrive(200.0,m_DrivetrainSubsystem)  
-      .andThen(new ShootHigh(ShooterSubsystem));
+      .andThen(new ShootHigh(m_ShooterSubsystem,m_IntakeSubsystem));
 
   }
 }

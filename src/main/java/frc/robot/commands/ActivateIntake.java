@@ -4,6 +4,7 @@
 
 package frc.robot.commands;
 
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.CommandBase;
 import frc.robot.subsystems.IntakeSubsystem;
 
@@ -26,6 +27,8 @@ public class ActivateIntake extends CommandBase {
   @Override
   public void execute() {
     m_IntakeSubsystem.IntakeIn();
+    System.out.println(m_IntakeSubsystem.ballExist());
+    SmartDashboard.putBoolean("Ball Exists",m_IntakeSubsystem.ballExist() );
 
     if(m_IntakeSubsystem.ballExist()){
       m_IntakeSubsystem.LoaderIn();

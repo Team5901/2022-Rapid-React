@@ -90,21 +90,24 @@ public class DrivetrainSubsystem extends SubsystemBase {
   public void AutoDroive(double distance) {
 
     //find absolute error
-    //Encoder distance: positive = backwards, negative =-forwards
-    double error = distance + getAverageEncoderDistance();
+    //Encoder distance: positive = backwards, negative = forwards
+    double error = Math.abs(distance) - Math.abs(getAverageEncoderDistance());
     System.out.println("AutoDrive distance: " + distance +" Error:" + error);
 
     //if distance is positive and error is greater than 
 
-    
-    if(Math.abs(error) > DriveConstants.kAutoDistanceError){   
+    if(error > DriveConstants.kAutoDistanceError){   
       
       //Positive 1st argument = backwards
-      cougarDrive(-Math.signum(distance)*DriveConstants.kAutoSpeedRatio, -m_gyro.getAngle()*DriveConstants.kAutoTurnRatio);
-      System.out.println("Auto Speed Ratio: " + DriveConstants.kAutoSpeedRatio);
+      cougarDrive(-Math.signum(distance)*DriveConstants.kAutoHighSpeedRatio, -m_gyro.getAngle()*DriveConstants.kAutoTurnRatio);
+      System.out.println("Auto High Speed Ratio: " + DriveConstants.kAutoHighSpeedRatio);
     }  
+    else if(error <= DriveConstants.kAutoDistanceError){  
+      cougarDrive(-Math.signum(distance)*DriveConstants.kAutoLowSpeedRatio, -m_gyro.getAngle()*DriveConstants.kAutoTurnRatio);
+      System.out.println("Near target - slow down:" + DriveConstants.kAutoLowSpeedRatio);
+    }
     else {
-      System.out.println("Target reached - Stop");
+      System.out.println("Target reached/passed - Stop");
       cougarDrive(0,0);
     }
   }
@@ -127,7 +130,7 @@ public class DrivetrainSubsystem extends SubsystemBase {
   }
 
   public double getAverageEncoderDistance() {
-    double distancePerUnit=6*Math.PI/2048;
+    double distancePerUnit=6*Math.PI/2048/DriveConstants.kDrivetrainRatio;
     return (getLeftEncoder()+getRightEncoder())*distancePerUnit / 2.0;
   }
 

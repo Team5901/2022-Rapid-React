@@ -44,12 +44,16 @@ public final class Constants {
     //#################### DRIVETRAIN CONSTANTS ####################
 
     public static final class DriveConstants {
+
+        //Drivetrain Gear Ratio (For ever x spin of the motor, the wheel turns once)
+        public static final double kDrivetrainRatio = 10.91;
         //Drivetrain Parameters
         public static final double kLowSpeedRatio = 0.7;
         public static final double kHighSpeedRatio = 0.7;
         public static final double kLimitTurnRatio = 0.5;
         
-        public static final double kAutoSpeedRatio = 0.8;           //Adjusts how quickly we drive straight in auto
+        public static final double kAutoHighSpeedRatio = 0.8;           //Fast speed in auto when far from target
+        public static final double kAutoLowSpeedRatio = 0.6;           //Slow mode in auto when approaching target
         public static final double kAutoDistanceError = 20;         //Threshold acceptable distance error for auto
         public static final double kAutoMinFwdRatio = 0;            //Minimum power required to move robot
 

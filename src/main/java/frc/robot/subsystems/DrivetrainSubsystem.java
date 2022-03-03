@@ -91,7 +91,7 @@ public class DrivetrainSubsystem extends SubsystemBase {
 
     //find absolute error
     //Encoder distance: positive = backwards, negative =-forwards
-    double error = distance + Math.signum(distance)*getAverageEncoderDistance();
+    double error = distance + getAverageEncoderDistance();
     System.out.println("AutoDrive distance: " + distance +" Error:" + error);
 
     //if distance is positive and error is greater than 

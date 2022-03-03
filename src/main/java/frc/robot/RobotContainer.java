@@ -53,7 +53,6 @@ public class RobotContainer {
   private final IntakeSubsystem m_IntakeSubsystem = new IntakeSubsystem();
   private final ShooterSubsystem m_ShooterSubsystem = new ShooterSubsystem();
   private final SendableChooser<Command> auto = new SendableChooser<Command>();
-  private final SendableChooser<String> autou = new SendableChooser<String>();
 
 
   XboxController Controller1 = new XboxController(0);
@@ -76,18 +75,6 @@ public class RobotContainer {
     //driverShuffleboardTab.add("LL", limelightFeed).withPosition(0, 0).withSize(15, 8).withProperties(Map.of("Show Crosshair", true, "Show Controls", false));
 
     //Autonomous procedures
-    //auto.addOption("AutoDrive", new AutoDrive(0.5, m_DrivetrainSubsystem));
-    //auto.addOption("Reverse", new AutoReverse(m_DrivetrainSubsystem));
-    //auto.addOption("Auto Turn", new AutoTurn(0, m_DrivetrainSubsystem));
-    //Autonomous positions
-    //autou.addOption("Far Left", "Far Left");
-    //autou.addOption("Middle Left", "Middle Left");
-    //autou.addOption("Middle", "Middle");
-    //autou.addOption("Middle Right", "Middle Right");
-    //autou.addOption("Far Right", "Far Right");
-
-    //middle, mid l/r, far l/r
-
     SmartDashboard.putData("Auto Chooser", auto);
   }
 

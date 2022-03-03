@@ -46,14 +46,11 @@ public class AutoDrive extends CommandBase {
   @Override
   public void end(boolean interrupted) {
     m_DrivetrainSubsystem.AutoDroive(0);
-
-    //m_DrivetrainSubsystem.cougarDrive(0, 0);
   }
 
   // Returns true when the command should end.
   @Override
   public boolean isFinished() {
-    System.out.println(Math.abs(m_DrivetrainSubsystem.getAverageEncoderDistance()-m_distance) <= Constants.DriveConstants.kAutoDistanceError);
     return Math.abs(m_DrivetrainSubsystem.getAverageEncoderDistance()-m_distance) <=  Constants.DriveConstants.kAutoDistanceError;
   }
 }

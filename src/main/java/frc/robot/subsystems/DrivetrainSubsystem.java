@@ -18,6 +18,8 @@ import edu.wpi.first.wpilibj.drive.DifferentialDrive;
 import edu.wpi.first.wpilibj.motorcontrol.MotorControllerGroup;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
+import frc.robot.Robot;
+import frc.robot.RobotContainer;
 import frc.robot.Constants.DriveConstants;
 import frc.robot.Constants.RobotPorts;
 
@@ -80,7 +82,7 @@ public class DrivetrainSubsystem extends SubsystemBase {
   
     double y = Math.pow(rot,3.0);
     //System.out.println("1st x: " + x);
-    m_drive.arcadeDrive(Math.max(-0.8,Math.min(0.8,x)),Math.max(-0.6,Math.min(0.6,y)));
+    m_drive.arcadeDrive(Math.max(-0.7,Math.min(0.7,x)),Math.max(-0.6,Math.min(0.6,y)));
     
     //System.out.println("arcade x: " + Math.max(-1,Math.min(1,x)));
     //System.out.println("arcade y: " + Math.max(-.6,Math.min(0.6,y)));
@@ -159,7 +161,7 @@ public class DrivetrainSubsystem extends SubsystemBase {
   public void periodic() {
     //SmartDashboard.putNumber("Distance Traveled",getAverageEncoderDistance());
     //SmartDashboard.putNumber("Angle Heading",getAngle());
-    SmartDashboard.putNumber("Energy", PowerDistributionPanel.getTotalEnergy());
+    //SmartDashboard.putNumber("Energy", PowerDistributionPanel.getTotalEnergy());
     //This method will be called once per scheduler run
   }
 

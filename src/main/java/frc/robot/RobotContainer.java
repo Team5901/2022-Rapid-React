@@ -56,7 +56,7 @@ public class RobotContainer {
   private final SendableChooser<Command> auto = new SendableChooser<Command>();
 
 
-  XboxController Controller1 = new XboxController(0);
+  public XboxController Controller1 = new XboxController(0);
 
   /**
    * The container for the robot.  Contains subsystems, OI devices, and commands.
@@ -77,10 +77,9 @@ public class RobotContainer {
 
     //Autonomous procedures
 
-    auto.setDefaultOption("Reverse", new AutoDrive(-100.0, m_DrivetrainSubsystem));
-    auto.addOption("Shoot and reverse", new AutoDrive(100.0,m_DrivetrainSubsystem)  
-    .andThen(new ShootHigh(m_ShooterSubsystem,m_IntakeSubsystem).withTimeout(3))
-    .andThen(new AutoDrive(-200.0, m_DrivetrainSubsystem)));
+    auto.setDefaultOption("Shoot and reverse", new ShootHigh(m_ShooterSubsystem,m_IntakeSubsystem).withTimeout(3) 
+    .andThen(new AutoDrive(-150.0, m_DrivetrainSubsystem)));
+    auto.addOption("Reverse", new AutoDrive(-100.0, m_DrivetrainSubsystem));
     SmartDashboard.putData("Auto Chooser", auto);
   }
 
@@ -99,7 +98,7 @@ public class RobotContainer {
     new JoystickButton(Controller1, Button.kRightBumper.value)
     .whenHeld(new ActivateIntake(m_IntakeSubsystem));
 
-    new JoystickButton(Controller1, Button.kRightBumper.value)
+    new JoystickButton(Controller1, Button.kLeftBumper.value)
     .whenHeld(new ReverseLoader(m_IntakeSubsystem));
 
     new JoystickButton(Controller1, Button.kA.value)
@@ -112,7 +111,6 @@ public class RobotContainer {
     .whenHeld(new ShootHigh(m_ShooterSubsystem,m_IntakeSubsystem));
 
   }
-
 
   /**
    * Use this to pass the autonomous command to the main {@link Robot} class.

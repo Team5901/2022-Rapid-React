@@ -90,7 +90,7 @@ public final class Constants {
 
     public static final class ShooterConstants{
         
-        public static final double kShoot_highRPM = 2000; //Initiation
+        public static final double kShoot_highRPM = 2400; //Initiation
         //public static final double kShooter_17RPM = 5000; //Trench
         //public static final double kShooter_passRPM = 500; //pass
      

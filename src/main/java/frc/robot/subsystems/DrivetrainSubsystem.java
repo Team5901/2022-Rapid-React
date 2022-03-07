@@ -18,8 +18,6 @@ import edu.wpi.first.wpilibj.drive.DifferentialDrive;
 import edu.wpi.first.wpilibj.motorcontrol.MotorControllerGroup;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
-import frc.robot.Robot;
-import frc.robot.RobotContainer;
 import frc.robot.Constants.DriveConstants;
 import frc.robot.Constants.RobotPorts;
 
@@ -76,7 +74,7 @@ public class DrivetrainSubsystem extends SubsystemBase {
     rightFrontDriveMotor.configOpenloopRamp(0.75,10);
   }
 
-  public void cougarDrive(double fwd, double rot) {
+  public void cougarDrive(double fwd, double rot, boolean climbMode, boolean turboMode) {
     //System.out.println("Forward: " + fwd);
     double x = Math.pow(fwd,3.0);
   
@@ -84,8 +82,15 @@ public class DrivetrainSubsystem extends SubsystemBase {
     //System.out.println("1st x: " + x);
     m_drive.arcadeDrive(Math.max(-0.7,Math.min(0.7,x)),Math.max(-0.6,Math.min(0.6,y)));
     
-    //System.out.println("arcade x: " + Math.max(-1,Math.min(1,x)));
-    //System.out.println("arcade y: " + Math.max(-.6,Math.min(0.6,y)));
+    if(climbMode == true){
+      m_drive.arcadeDrive(Math.max(-0.5,Math.min(0.5,x)),Math.max(-0.6,Math.min(0.6,y)));
+    }
+    else if(turboMode == true){
+      m_drive.arcadeDrive(Math.max(-0.9,Math.min(0.9,x)),Math.max(-0.6,Math.min(0.6,y)));
+    }
+    else{
+      m_drive.arcadeDrive(Math.max(-0.7,Math.min(0.7,x)),Math.max(-0.6,Math.min(0.6,y)));
+    }
 
   }
   
@@ -101,16 +106,16 @@ public class DrivetrainSubsystem extends SubsystemBase {
     if(error > DriveConstants.kAutoDistanceError){   
       
       //Positive 1st argument = backwards
-      cougarDrive(-Math.signum(distance)*DriveConstants.kAutoHighSpeedRatio, -m_gyro.getAngle()*DriveConstants.kAutoTurnRatio);
+      cougarDrive(-Math.signum(distance)*DriveConstants.kAutoHighSpeedRatio, -m_gyro.getAngle()*DriveConstants.kAutoTurnRatio,false,false);
       System.out.println("Auto High Speed Ratio: " + DriveConstants.kAutoHighSpeedRatio);
     }  
     else if(error <= DriveConstants.kAutoDistanceError){  
-      cougarDrive(-Math.signum(distance)*DriveConstants.kAutoLowSpeedRatio, -m_gyro.getAngle()*DriveConstants.kAutoTurnRatio);
+      cougarDrive(-Math.signum(distance)*DriveConstants.kAutoLowSpeedRatio, -m_gyro.getAngle()*DriveConstants.kAutoTurnRatio,false,false);
       System.out.println("Near target - slow down:" + DriveConstants.kAutoLowSpeedRatio);
     }
     else {
       System.out.println("Target reached/passed - Stop");
-      cougarDrive(0,0);
+      cougarDrive(0,0,false,false);
     }
   }
   
@@ -119,10 +124,10 @@ public class DrivetrainSubsystem extends SubsystemBase {
     double target = angle + AngleTarget;
 
     if(Math.abs(target) > DriveConstants.kAutoAngleError){
-      cougarDrive(0, -Math.signum(target)*(Math.abs(target)*DriveConstants.kAutoTurnRatio) + DriveConstants.kAutoMinRotRatio);
+      cougarDrive(0, -Math.signum(target)*(Math.abs(target)*DriveConstants.kAutoTurnRatio) + DriveConstants.kAutoMinRotRatio,false,false);
     }
     else {
-      cougarDrive(0, 0);
+      cougarDrive(0, 0, false,false);
     }
   }
 
@@ -161,7 +166,7 @@ public class DrivetrainSubsystem extends SubsystemBase {
   public void periodic() {
     //SmartDashboard.putNumber("Distance Traveled",getAverageEncoderDistance());
     //SmartDashboard.putNumber("Angle Heading",getAngle());
-    //SmartDashboard.putNumber("Energy", PowerDistributionPanel.getTotalEnergy());
+    SmartDashboard.putNumber("Energy", PowerDistributionPanel.getTotalEnergy());
     //This method will be called once per scheduler run
   }
 

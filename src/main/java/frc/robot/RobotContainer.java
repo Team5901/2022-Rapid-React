@@ -8,6 +8,9 @@
 package frc.robot;
 
 import edu.wpi.first.cscore.UsbCamera;
+
+import java.util.ResourceBundle.Control;
+
 import edu.wpi.first.cameraserver.CameraServer;
 /*
 
@@ -66,7 +69,7 @@ public class RobotContainer {
     //Add default commands here
     m_DrivetrainSubsystem.setDefaultCommand(new RunCommand(() -> m_DrivetrainSubsystem.cougarDrive(
             Controller1.getLeftY(),
-            -Controller1.getRightX()), m_DrivetrainSubsystem));
+            -Controller1.getRightX(),Controller1.getXButton(),Controller1.getLeftStickButton()), m_DrivetrainSubsystem));
               
     // Configure the button bindings
     configureButtonBindings();

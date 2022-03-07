@@ -36,7 +36,7 @@ public class AutoAim extends CommandBase {
 
     if (m_VisionSubsystem.targetAvailable() == true && Math.abs(TargetAngle) >= 1.0 ){
         System.out.println("Target Acquired - Rotating");
-        m_DrivetrainSubsystem.cougarDrive(Constants.DriveConstants.kVisionSpeedRatio, Constants.DriveConstants.kVisionTurnRatio*TargetAngle);
+        m_DrivetrainSubsystem.cougarDrive(Constants.DriveConstants.kVisionSpeedRatio, Constants.DriveConstants.kVisionTurnRatio*TargetAngle,false,false);
 
     }
     else if (m_VisionSubsystem.targetAvailable() == true && Math.abs(TargetAngle) < 1.0 ) {

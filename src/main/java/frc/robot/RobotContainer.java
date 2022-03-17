@@ -42,6 +42,7 @@ import frc.robot.subsystems.ShooterSubsystem;
 import frc.robot.subsystems.VisionSubsystem;
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.RunCommand;
+import edu.wpi.first.wpilibj2.command.WaitCommand;
 import edu.wpi.first.wpilibj2.command.button.JoystickButton;
 
 /**
@@ -60,6 +61,7 @@ public class RobotContainer {
 
 
   public XboxController Controller1 = new XboxController(0);
+  public XboxController Controller2 = new XboxController(1);
 
   /**
    * The container for the robot.  Contains subsystems, OI devices, and commands.
@@ -82,6 +84,11 @@ public class RobotContainer {
 
     auto.setDefaultOption("Shoot and reverse", new ShootHigh(m_ShooterSubsystem,m_IntakeSubsystem).withTimeout(3) 
     .andThen(new AutoDrive(-150.0, m_DrivetrainSubsystem)));
+
+    auto.addOption("wait, Shoot and reverse", new WaitCommand(2) 
+    .andThen(new ShootHigh(m_ShooterSubsystem,m_IntakeSubsystem).withTimeout(3))
+    .andThen(new AutoDrive(-150.0, m_DrivetrainSubsystem)));
+
     auto.addOption("Reverse", new AutoDrive(-100.0, m_DrivetrainSubsystem));
     SmartDashboard.putData("Auto Chooser", auto);
   }
@@ -98,21 +105,26 @@ public class RobotContainer {
      * ##################################*/
 
     
-    new JoystickButton(Controller1, Button.kRightBumper.value)
-    .whenHeld(new ActivateIntake(m_IntakeSubsystem));
+    
 
-    new JoystickButton(Controller1, Button.kLeftBumper.value)
-    .whenHeld(new ReverseLoader(m_IntakeSubsystem));
+    
 
-    new JoystickButton(Controller1, Button.kA.value)
-    .whenHeld(new IntakeOut(m_IntakeSubsystem));
-
-    new JoystickButton(Controller1, Button.kY.value)
-    .whenHeld(new LoadCargoIn(m_IntakeSubsystem));
+    
 
     new JoystickButton(Controller1, Button.kB.value)
     .whenHeld(new ShootHigh(m_ShooterSubsystem,m_IntakeSubsystem));
+/* Second Controller Commands    */
+    new JoystickButton(Controller2, Button.kRightBumper.value)
+    .whenHeld(new LoadCargoIn(m_IntakeSubsystem));
 
+    new JoystickButton(Controller2, Button.kA.value)
+    .whenHeld(new IntakeOut(m_IntakeSubsystem));
+
+    new JoystickButton(Controller2, Button.kRightBumper.value)
+    .whenHeld(new ActivateIntake(m_IntakeSubsystem));
+    
+    new JoystickButton(Controller2, Button.kLeftBumper.value)
+    .whenHeld(new ReverseLoader(m_IntakeSubsystem));
   }
 
   /**

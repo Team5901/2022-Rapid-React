@@ -84,13 +84,13 @@ public final class Constants {
 
     public static final class IntakeConstants {
         public static final double kIntakeSpeed = 1.0; // works with bumper
-        public static final double kLoaderSpeed = 0.2;
+        public static final double kLoaderSpeed = 0.2; //DETROIT COMP = 0.2 GOOD
     }
     //#################### SHOOTER CONSTANTS ####################
 
     public static final class ShooterConstants{
         
-        public static final double kShoot_highRPM = 2200; //Initiation
+        public static final double kShoot_highRPM = 2400; //Initiation
         //public static final double kShooter_17RPM = 5000; //Trench
         //public static final double kShooter_passRPM = 500; //pass
      
@@ -99,8 +99,8 @@ public final class Constants {
     	public static final int kSlotIdx = 0;
         public static final int kPIDLoopIdx = 0;
         
-        public static final double kF = 0.07;
-        public static final double kP = 0.1;
+        public static final double kF = 0.058;
+        public static final double kP = 0.3;
         public static final double kI = 0;
         public static final double kD = 0.001;
     }

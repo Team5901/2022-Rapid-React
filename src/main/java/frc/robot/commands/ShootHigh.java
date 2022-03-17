@@ -33,7 +33,7 @@ public class ShootHigh extends CommandBase {
   public void execute() {
     m_ShooterSubsystem.shooterSpeedUp(ShooterConstants.kShoot_highRPM);
 
-    if(m_ShooterSubsystem.getShooterRPM() > Constants.ShooterConstants.kShoot_highRPM-250){
+    if(m_ShooterSubsystem.getShooterRPM() > Constants.ShooterConstants.kShoot_highRPM-100){
       m_IntakeSubsystem.LoaderIn();
     }
   }

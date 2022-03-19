@@ -54,10 +54,23 @@ public class VisionSubsystem extends SubsystemBase {
     NetworkTableInstance.getDefault().getTable("limelight").getEntry("ledMode").setNumber(3);    
   }
 
+  public void setPipeline(int n){
+    //select pipeline n, where n is 0-9
+    NetworkTableInstance.getDefault().getTable("limelight").getEntry("pipeline").setNumber(n); 
+  }
+
+  public void takeSnapshot(){
+    //reset snapshot mode
+    NetworkTableInstance.getDefault().getTable("limelight").getEntry("ledMode").setNumber(0); 
+
+    //take one snapshot
+    NetworkTableInstance.getDefault().getTable("limelight").getEntry("ledMode").setNumber(1); 
+  }
+
   @Override
   public void periodic(){
-    //SmartDashboard.putBoolean("Limelight Target Angle",Math.abs(getTx())<2);
-    //SmartDashboard.putBoolean("Limelight Target Available",targetAvailable());
+    SmartDashboard.putBoolean("Limelight Target Angle",Math.abs(getTx())<2);
+    SmartDashboard.putBoolean("Limelight Target Available",targetAvailable());
   }
   
 

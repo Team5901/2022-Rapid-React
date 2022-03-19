@@ -42,6 +42,7 @@ public class DrivetrainSubsystem extends SubsystemBase {
 
 
   // The robot's drive
+
   private final DifferentialDrive m_drive = new DifferentialDrive(m_leftMotors, m_rightMotors);
 
   // The Gyro
@@ -167,9 +168,8 @@ public class DrivetrainSubsystem extends SubsystemBase {
   @Override
   public void periodic() {
     //SmartDashboard.putNumber("Distance Traveled",getAverageEncoderDistance());
-    //SmartDashboard.putNumber("Angle Heading",getAngle());
     SmartDashboard.putNumber("Energy", PowerDistributionPanel.getTotalEnergy());
-    //This method will be called once per scheduler run
+    SmartDashboard.putNumber("Robot Angle", m_gyro.getAngle());
   }
 
 }

@@ -9,6 +9,7 @@ package frc.robot;
 
 import edu.wpi.first.cameraserver.CameraServer;
 import edu.wpi.first.cscore.UsbCamera;
+import edu.wpi.first.util.net.PortForwarder;
 import edu.wpi.first.wpilibj.TimedRobot;
 import edu.wpi.first.wpilibj.Timer;
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
@@ -48,7 +49,18 @@ public class Robot extends TimedRobot {
     UsbCamera camera = CameraServer.startAutomaticCapture();
     // Set the resolution
     camera.setResolution(320, 240);
+
+    //Open ports to allow limelight communication while tethered
+    PortForwarder(5800, "limelight.local", 5800);
+    PortForwarder(5801, "limelight.local", 5801);
+    PortForwarder(5802, "limelight.local", 5802);
+    PortForwarder(5803, "limelight.local", 5803);
+    PortForwarder(5804, "limelight.local", 5804);
+    PortForwarder(5805, "limelight.local", 5805);
        
+  }
+
+  private void PortForwarder(int i, String string, int j) {
   }
 
   /**
@@ -72,6 +84,7 @@ public class Robot extends TimedRobot {
    */
   @Override
   public void disabledInit() {
+    
   }
 
   @Override

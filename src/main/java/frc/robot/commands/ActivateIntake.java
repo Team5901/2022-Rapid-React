@@ -27,13 +27,14 @@ public class ActivateIntake extends CommandBase {
   @Override
   public void execute() {
     m_IntakeSubsystem.IntakeIn();
+    m_IntakeSubsystem.LoaderIn();
 
-    if(m_IntakeSubsystem.ballExist()){
-      m_IntakeSubsystem.LoaderIn();
-    }
-    else{
-      m_IntakeSubsystem.LoaderStop();
-    }
+    //if(m_IntakeSubsystem.ballExist()){
+    //  m_IntakeSubsystem.LoaderIn();
+    //}
+    //else{
+    //  m_IntakeSubsystem.LoaderStop();
+    //}
   }
 
   // Called once the command ends or is interrupted.

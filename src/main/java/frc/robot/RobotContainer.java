@@ -38,6 +38,7 @@ import frc.robot.commands.ShootHigh;
 import frc.robot.commands.AutoDrive;
 import frc.robot.subsystems.DrivetrainSubsystem;
 import frc.robot.subsystems.IntakeSubsystem;
+import frc.robot.subsystems.LEDSubsystem;
 import frc.robot.subsystems.ShooterSubsystem;
 import frc.robot.subsystems.VisionSubsystem;
 import edu.wpi.first.wpilibj2.command.Command;
@@ -57,6 +58,7 @@ public class RobotContainer {
   private final VisionSubsystem m_VisionSubsystem = new VisionSubsystem();
   private final IntakeSubsystem m_IntakeSubsystem = new IntakeSubsystem();
   private final ShooterSubsystem m_ShooterSubsystem = new ShooterSubsystem();
+  private final LEDSubsystem m_LedSubsystem = new LEDSubsystem();
   private final SendableChooser<Command> auto = new SendableChooser<Command>();
 
 
@@ -72,6 +74,8 @@ public class RobotContainer {
     m_DrivetrainSubsystem.setDefaultCommand(new RunCommand(() -> m_DrivetrainSubsystem.cougarDrive(
             Controller1.getLeftY(),
             -Controller1.getRightX(),Controller1.getXButton(),Controller1.getLeftStickButton()), m_DrivetrainSubsystem));
+
+    m_LedSubsystem.setDefaultCommand(new RunCommand(() -> m_LedSubsystem.Shot_blue()));
               
     // Configure the button bindings
     configureButtonBindings();

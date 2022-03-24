@@ -57,7 +57,7 @@ public final class Constants {
         public static final double kAutoDistanceError = 20;         //Threshold acceptable distance error for auto
         public static final double kAutoMinFwdRatio = 0;            //Minimum power required to move robot
 
-        public static final double kAutoTurnRatio = 0.03;           //Adjusts how quickly we turn in auto         
+        public static final double kAutoTurnRatio = -0.1;           //OG = 0.03 doesnt work Adjusts how quickly we turn in auto         
         public static final double kAutoAngleError = 1;             //Threshold acceptable angle error for auto
         public static final double kAutoMinRotRatio = .07;          //Minimum power required to turn robot
 

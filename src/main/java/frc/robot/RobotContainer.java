@@ -93,7 +93,7 @@ public class RobotContainer {
     .andThen(new ShootHigh(m_ShooterSubsystem,m_IntakeSubsystem).withTimeout(3))
     .andThen(new AutoDrive(-150.0, m_DrivetrainSubsystem)));
 
-    auto.addOption("Reverse", new AutoDrive(-100.0, m_DrivetrainSubsystem));
+    auto.addOption("Reverse", new AutoDrive(-300.0, m_DrivetrainSubsystem));
     SmartDashboard.putData("Auto Chooser", auto);
   }
 
@@ -138,7 +138,7 @@ public class RobotContainer {
    */
   public Command getAutonomousCommand() {
     // An ExampleCommand will run in autonomous
-
+    m_DrivetrainSubsystem.resetAngle();
     System.out.println("RUNNING AUTONOMOUS COMMAND: " + auto.getSelected());
     return auto.getSelected();
 

@@ -168,7 +168,7 @@ public class DrivetrainSubsystem extends SubsystemBase {
   @Override
   public void periodic() {
     //SmartDashboard.putNumber("Distance Traveled",getAverageEncoderDistance());
-    SmartDashboard.putNumber("Energy", PowerDistributionPanel.getTotalEnergy());
+    //SmartDashboard.putNumber("Energy", PowerDistributionPanel.getTotalEnergy());
     SmartDashboard.putNumber("Robot Angle", m_gyro.getAngle());
   }
 

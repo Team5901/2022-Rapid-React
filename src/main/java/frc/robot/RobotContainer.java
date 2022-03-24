@@ -58,7 +58,7 @@ public class RobotContainer {
   private final VisionSubsystem m_VisionSubsystem = new VisionSubsystem();
   private final IntakeSubsystem m_IntakeSubsystem = new IntakeSubsystem();
   private final ShooterSubsystem m_ShooterSubsystem = new ShooterSubsystem();
-  private final LEDSubsystem m_LedSubsystem = new LEDSubsystem();
+  private final LEDSubsystem m_LEDSubsystem = new LEDSubsystem();
   private final SendableChooser<Command> auto = new SendableChooser<Command>();
 
 
@@ -75,8 +75,8 @@ public class RobotContainer {
             Controller1.getLeftY(),
             -Controller1.getRightX(),Controller1.getXButton(),Controller1.getLeftStickButton()), m_DrivetrainSubsystem));
 
-    m_LedSubsystem.setDefaultCommand(new RunCommand(() -> m_LedSubsystem.Shot_blue()));
-              
+    m_LEDSubsystem.setDefaultCommand(new RunCommand(() -> m_LEDSubsystem.Gold(),m_LEDSubsystem));
+
     // Configure the button bindings
     configureButtonBindings();
 

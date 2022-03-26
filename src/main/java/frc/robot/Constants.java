@@ -28,16 +28,11 @@ public final class Constants {
         public static final int kRightRearMotor = 2;
         public static final int kIntakeMotor = 6;
         public static final int kLoadingMotor = 4;
-        //public static final int kConveyorMotor = 5;
-        //public static final int kLeftClimberMotor = 6;
-        //public static final int kRightClimberMotor = 7;
+        public static final int kMidtakeMotor = 7;
         public static final int kShooterMotor = 5;
 
-        //Pneumatic Control Module ports
-        //public static final int kShifterSolenoid = 3;
         public static final int kIntakeSolenoid = 1;
-        //public static final int[] kLeftEncoderPorts = new int[]{0, 1};
-        //public static final int[] kRightEncoderPorts = new int[]{2, 3};
+
 
 
     }
@@ -85,6 +80,7 @@ public final class Constants {
     public static final class IntakeConstants {
         public static final double kIntakeSpeed = 1.0; // works with bumper
         public static final double kLoaderSpeed = 0.3; //DETROIT COMP = 0.2 GOOD
+        public static final double kMidtakeSpeed = 0.3;
     }
     //#################### SHOOTER CONSTANTS ####################
 

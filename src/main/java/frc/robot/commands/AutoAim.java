@@ -26,6 +26,7 @@ public class AutoAim extends CommandBase {
   // Called when the command is initially scheduled.
   @Override
   public void initialize() {
+    m_VisionSubsystem.setPipeline(0);
   }
 
   // Called every time the scheduler runs while the command is scheduled.

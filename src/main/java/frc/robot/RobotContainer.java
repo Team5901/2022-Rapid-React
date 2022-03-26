@@ -94,6 +94,15 @@ public class RobotContainer {
     .andThen(new AutoDrive(-150.0, m_DrivetrainSubsystem)));
 
     auto.addOption("Reverse", new AutoDrive(-300.0, m_DrivetrainSubsystem));
+
+    auto.addOption("Auto Drive 3.0 position A", new ShootHigh(m_ShooterSubsystem, m_IntakeSubsystem).withTimeout(3)
+    .andThen(new AutoTurn(180, m_DrivetrainSubsystem))
+    .andThen(new ActivateIntake(m_IntakeSubsystem).alongWith(new AutoDrive(58,m_DrivetrainSubsystem)).withTimeout(3))
+    .andThen(new AutoTurn(180,m_DrivetrainSubsystem))
+    .andThen(new AutoDrive(58,m_DrivetrainSubsystem))
+    .andThen(new ShootHigh(m_ShooterSubsystem, m_IntakeSubsystem)));
+
+
     SmartDashboard.putData("Auto Chooser", auto);
   }
 

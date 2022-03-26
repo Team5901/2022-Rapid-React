@@ -72,9 +72,13 @@ public class RobotContainer {
   public RobotContainer() {
 
     //Add default commands here
-    m_DrivetrainSubsystem.setDefaultCommand(new TeleopDrive(
-            Controller1.getLeftY(),
-            -Controller1.getRightX(),Controller1.getXButton(),Controller1.getLeftStickButton(), m_DrivetrainSubsystem, m_LEDSubsystem));
+    //m_DrivetrainSubsystem.setDefaultCommand(new TeleopDrive(
+    //       Controller1.getLeftY(),
+    //        -Controller1.getRightX(),Controller1.getXButton(),Controller1.getLeftStickButton(), m_DrivetrainSubsystem, m_LEDSubsystem));
+
+    m_DrivetrainSubsystem.setDefaultCommand(new RunCommand(() -> m_DrivetrainSubsystem.cougarDrive(
+           Controller1.getLeftY(),
+            -Controller1.getRightX(),Controller1.getXButton(),Controller1.getLeftStickButton()), m_DrivetrainSubsystem));
 
     m_LEDSubsystem.setDefaultCommand(new RunCommand(() -> m_LEDSubsystem.Aqua(),m_LEDSubsystem));
 
@@ -124,17 +128,16 @@ public class RobotContainer {
     /**##################################
      * ##### CONTROLLER 1 - PRIMARY #####
      * ##################################*/
-
     
-    
-
-    
-
-    
-
     new JoystickButton(Controller1, Button.kB.value)
     .whenHeld(new ShootHigh(m_ShooterSubsystem,m_IntakeSubsystem,m_LEDSubsystem));
-/* Second Controller Commands    */
+
+    new JoystickButton(Controller1, Button.kA.value)
+    .whenHeld(new ShootHigh(m_ShooterSubsystem,m_IntakeSubsystem,m_LEDSubsystem));
+
+    /**####################################
+     * ##### CONTROLLER 2 - SECONDARY #####
+     * ##################################*/
     new JoystickButton(Controller2, Button.kRightBumper.value)
     .whenHeld(new LoadCargoIn(m_IntakeSubsystem));
 

@@ -30,7 +30,7 @@ public class ActivateIntake extends CommandBase {
   @Override
   public void execute() {
     m_IntakeSubsystem.IntakeIn();
-    m_IntakeSubsystem.LoaderIn();
+    m_IntakeSubsystem.MidtakeOn();
     m_LEDSubsystem.Lime();
 
     //if(m_IntakeSubsystem.ballExist()){
@@ -46,7 +46,7 @@ public class ActivateIntake extends CommandBase {
   public void end(boolean interrupted) {
     m_IntakeSubsystem.PistonIn();
     m_IntakeSubsystem.IntakeStop();
-    m_IntakeSubsystem.LoaderStop();
+    m_IntakeSubsystem.MidtakeStop();
   }
 
   // Returns true when the command should end.

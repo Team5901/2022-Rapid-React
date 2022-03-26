@@ -9,15 +9,18 @@ import frc.robot.subsystems.IntakeSubsystem;
 import frc.robot.subsystems.ShooterSubsystem;
 import frc.robot.Constants;
 import frc.robot.Constants.ShooterConstants;
+import frc.robot.subsystems.LEDSubsystem;
 
 public class ShootHigh extends CommandBase {
   /** Creates a new ShootHigh. */
+  final LEDSubsystem m_LEDSubsystem;
   final ShooterSubsystem m_ShooterSubsystem;
   final IntakeSubsystem m_IntakeSubsystem;
 
-  public ShootHigh(ShooterSubsystem subsystem1, IntakeSubsystem subsystem2) {
+  public ShootHigh(ShooterSubsystem subsystem1, IntakeSubsystem subsystem2, LEDSubsystem subsystem3) {
     m_ShooterSubsystem = subsystem1;
     m_IntakeSubsystem = subsystem2;
+    m_LEDSubsystem = subsystem3;
     addRequirements();
     // Use addRequirements() here to declare subsystem dependencies.
   }
@@ -35,6 +38,7 @@ public class ShootHigh extends CommandBase {
 
     if(m_ShooterSubsystem.getShooterRPM() > Constants.ShooterConstants.kShoot_highRPM-100){
       m_IntakeSubsystem.LoaderIn();
+    m_LEDSubsystem.BlueViolent();
     }
   }
 

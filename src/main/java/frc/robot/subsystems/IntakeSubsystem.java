@@ -27,7 +27,6 @@ public class IntakeSubsystem extends SubsystemBase {
   private final WPI_TalonFX LoadingMotor = new WPI_TalonFX(RobotPorts.kLoadingMotor);
   private final Solenoid IntakeSolenoid = new Solenoid(PneumaticsModuleType.CTREPCM,RobotPorts.kIntakeSolenoid);
   private final DigitalInput IntakeSensor = new DigitalInput(9);
-  private final WPI_TalonFX MidtakeMotor = new WPI_TalonFX(RobotPorts.kMidtakeMotor);
 
 
   public IntakeSubsystem() {
@@ -55,15 +54,7 @@ public class IntakeSubsystem extends SubsystemBase {
     //retracts piston in
     IntakeSolenoid.set(false);
   }
-  public void MidtakeOn() {
-    //Turns on midtake
-    MidtakeMotor.set(IntakeConstants.kMidtakeSpeed);
-  }
 
-  public void MidtakeStop() {
-    //turns off midtake
-    MidtakeMotor.stopMotor();
-  }
   public void LoaderIn(){
     //Pull ball in loader
     LoadingMotor.set(IntakeConstants.kLoaderSpeed);

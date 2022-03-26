@@ -30,7 +30,6 @@ public final class Constants {
         public static final int kLoadingMotor = 4;
         public static final int kMidtakeMotor = 7;
         public static final int kShooterMotor = 5;
-
         public static final int kIntakeSolenoid = 1;
 
 

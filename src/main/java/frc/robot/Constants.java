@@ -29,16 +29,9 @@ public final class Constants {
         public static final int kIntakeMotor = 6;
         public static final int kLoadingMotor = 4;
         public static final int kMidtakeMotor = 7;
-        //public static final int kConveyorMotor = 5;
-        //public static final int kLeftClimberMotor = 6;
-        //public static final int kRightClimberMotor = 7;
         public static final int kShooterMotor = 5;
-
-        //Pneumatic Control Module ports
-        //public static final int kShifterSolenoid = 3;
         public static final int kIntakeSolenoid = 1;
-        //public static final int[] kLeftEncoderPorts = new int[]{0, 1};
-        //public static final int[] kRightEncoderPorts = new int[]{2, 3};
+
 
 
     }

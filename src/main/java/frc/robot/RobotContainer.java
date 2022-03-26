@@ -102,6 +102,14 @@ public class RobotContainer {
     .andThen(new AutoDrive(58,m_DrivetrainSubsystem))
     .andThen(new ShootHigh(m_ShooterSubsystem, m_IntakeSubsystem)));
 
+    auto.addOption("Auto 3.0 position B", new ShootHigh(m_ShooterSubsystem,m_IntakeSubsystem)
+    .andThen(new AutoTurn(135, m_DrivetrainSubsystem))
+    .andThen(new ActivateIntake(m_IntakeSubsystem))
+    .andThen(new AutoDrive(150.0, m_DrivetrainSubsystem))
+    .andThen(new AutoTurn(-135, m_DrivetrainSubsystem))
+    .andThen(new AutoDrive(150, m_DrivetrainSubsystem))
+    .andThen(new ShootHigh(m_ShooterSubsystem, m_IntakeSubsystem)));
+
 
     SmartDashboard.putData("Auto Chooser", auto);
   }

@@ -59,9 +59,6 @@ public class VisionSubsystem extends SubsystemBase {
     NetworkTableInstance.getDefault().getTable("limelight").getEntry("pipeline").setNumber(n); 
   }
 
-  public void setStreamMode(){
-    NetworkTableInstance.getDefault().getTable("limelight").getEntry("stream").setNumber(0); 
-  }
   public void takeSnapshot(){
     //reset snapshot mode
     NetworkTableInstance.getDefault().getTable("limelight").getEntry("ledMode").setNumber(0); 

@@ -35,6 +35,7 @@ import frc.robot.commands.AutoTurn;
 import frc.robot.commands.LoadCargoIn;
 import frc.robot.commands.ReverseLoader;
 import frc.robot.commands.ShootHigh;
+import frc.robot.commands.TeleopDrive;
 import frc.robot.commands.AutoDrive;
 import frc.robot.subsystems.DrivetrainSubsystem;
 import frc.robot.subsystems.IntakeSubsystem;
@@ -71,8 +72,12 @@ public class RobotContainer {
   public RobotContainer() {
 
     //Add default commands here
+    //m_DrivetrainSubsystem.setDefaultCommand(new TeleopDrive(
+    //       Controller1.getLeftY(),
+    //        -Controller1.getRightX(),Controller1.getXButton(),Controller1.getLeftStickButton(), m_DrivetrainSubsystem, m_LEDSubsystem));
+
     m_DrivetrainSubsystem.setDefaultCommand(new RunCommand(() -> m_DrivetrainSubsystem.cougarDrive(
-            Controller1.getLeftY(),
+           Controller1.getLeftY(),
             -Controller1.getRightX(),Controller1.getXButton(),Controller1.getLeftStickButton()), m_DrivetrainSubsystem));
 
     m_LEDSubsystem.setDefaultCommand(new RunCommand(() -> m_LEDSubsystem.Aqua(),m_LEDSubsystem));
@@ -131,7 +136,10 @@ public class RobotContainer {
     new JoystickButton (Controller1, Button.kA.value)
     .whenHeld(new AutoAim(m_DrivetrainSubsystem, m_VisionSubsystem));
 
-/* Second Controller Commands    */
+    /**####################################
+     * ##### CONTROLLER 2 - SECONDARY #####
+     * ##################################*/
+
     new JoystickButton(Controller2, Button.kRightBumper.value)
     .whenHeld(new LoadCargoIn(m_IntakeSubsystem));
 

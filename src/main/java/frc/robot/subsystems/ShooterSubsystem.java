@@ -9,6 +9,7 @@ package frc.robot.subsystems;
 
 import com.ctre.phoenix.motorcontrol.ControlMode;
 import com.ctre.phoenix.motorcontrol.FeedbackDevice;
+import com.ctre.phoenix.motorcontrol.NeutralMode;
 import com.ctre.phoenix.motorcontrol.can.WPI_TalonFX;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
@@ -24,8 +25,8 @@ public class ShooterSubsystem extends SubsystemBase {
   private final WPI_TalonFX ShooterMotor = new WPI_TalonFX(RobotPorts.kShooterMotor);
   private final WPI_TalonFX LoadingMotor = new WPI_TalonFX(RobotPorts.kLoadingMotor);
 
-   public ShooterSubsystem() {
-
+  public ShooterSubsystem() {
+    LoadingMotor.setNeutralMode(NeutralMode.Brake);
     /* Config the peak and nominal outputs */
     ShooterMotor.configSelectedFeedbackSensor(FeedbackDevice.IntegratedSensor, 0, 0);
 
@@ -34,7 +35,7 @@ public class ShooterSubsystem extends SubsystemBase {
     ShooterMotor.configNominalOutputReverse(0, ShooterConstants.kTimeoutMs);
     ShooterMotor.configPeakOutputForward(1, ShooterConstants.kTimeoutMs);
     ShooterMotor.configPeakOutputReverse(-1, ShooterConstants.kTimeoutMs);
-
+    
     // Reverse motor direction
     ShooterMotor.setInverted(false);
 

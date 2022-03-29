@@ -4,7 +4,6 @@
 
 package frc.robot.commands;
 
-import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.CommandBase;
 import frc.robot.subsystems.IntakeSubsystem;
 import frc.robot.subsystems.LEDSubsystem;
@@ -31,7 +30,6 @@ public class ActivateIntake extends CommandBase {
   public void execute() {
     m_IntakeSubsystem.IntakeIn();
     m_IntakeSubsystem.MidtakeOn();
-    m_LEDSubsystem.Lime();
 
     if(m_IntakeSubsystem.ballExist()){
       m_LEDSubsystem.Lime();

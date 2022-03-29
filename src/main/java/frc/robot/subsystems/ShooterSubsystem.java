@@ -22,6 +22,7 @@ public class ShooterSubsystem extends SubsystemBase {
    * Creates a new ShooterSubsystem.
    */
   private final WPI_TalonFX ShooterMotor = new WPI_TalonFX(RobotPorts.kShooterMotor);
+  private final WPI_TalonFX LoadingMotor = new WPI_TalonFX(RobotPorts.kLoadingMotor);
 
    public ShooterSubsystem() {
 
@@ -53,6 +54,20 @@ public class ShooterSubsystem extends SubsystemBase {
 
   public double getShooterRPM(){
       return (ShooterMotor.getSelectedSensorVelocity()/2048*600);
+  }
+
+  public void LoaderIn(){
+    //Pull ball in loader
+    LoadingMotor.set(ShooterConstants.kLoaderSpeed);
+  }
+
+  public void LoaderOut(){ 
+    //Push ball out of loader
+    LoadingMotor.set(-ShooterConstants.kLoaderSpeed); 
+  }
+
+ public void  LoaderStop(){
+    LoadingMotor.stopMotor();
   }
 
   public void stopShooter(){

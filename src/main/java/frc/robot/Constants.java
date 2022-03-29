@@ -28,6 +28,7 @@ public final class Constants {
         public static final int kRightRearMotor = 2;
         public static final int kIntakeMotor = 6;
         public static final int kLoadingMotor = 4;
+        public static final int kMidtakeMotor = 7;
         //public static final int kConveyorMotor = 5;
         //public static final int kLeftClimberMotor = 6;
         //public static final int kRightClimberMotor = 7;
@@ -57,13 +58,17 @@ public final class Constants {
         public static final double kAutoDistanceError = 20;         //Threshold acceptable distance error for auto
         public static final double kAutoMinFwdRatio = 0;            //Minimum power required to move robot
 
-        public static final double kAutoTurnRatio = -0.1;           //-0.1 is good doesnt work Adjusts how quickly we turn in auto         
-        public static final double kAutoAngleError = 1;             //Threshold acceptable angle error for auto
+        public static final double kAutoTurnRatioLow = -0.05;           //-0.1 is good doesnt work Adjusts how quickly we turn in auto     
+        public static final double kAutoTurnRatioHigh = -0.1;           //-0.1 is good doesnt work Adjusts how quickly we turn in auto        
+        public static final double kAutoAngleErrorLow = 1;             //Threshold acceptable low angle error for auto
+        public static final double kAutoAngleErrorHigh = 3;             //Threshold acceptable high angle error for auto
         public static final double kAutoMinRotRatio = .07;          //Minimum power required to turn robot
 
         //Vision Paramters
-        public static final double kVisionSpeedRatio = 0.2;
-        public static final double kVisionTurnRatio = 0.7;
+        public static final double kVisionSpeedRatio = 0.0;
+        public static final double kVisionTurnRatioLowError = -0.1;
+        public static final double kVisionTurnRatioHighError = -0.075;
+
 
         //Drivetrain Motors
 
@@ -85,6 +90,7 @@ public final class Constants {
     public static final class IntakeConstants {
         public static final double kIntakeSpeed = 1.0; // works with bumper
         public static final double kLoaderSpeed = 0.3; //DETROIT COMP = 0.2 GOOD
+        public static final double kMidtakeSpeed = 0.3;
     }
     //#################### SHOOTER CONSTANTS ####################
 

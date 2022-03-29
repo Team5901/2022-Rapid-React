@@ -13,7 +13,6 @@ import com.ctre.phoenix.motorcontrol.TalonFXInvertType;
 import com.ctre.phoenix.motorcontrol.can.WPI_TalonFX;
 
 import edu.wpi.first.wpilibj.ADXRS450_Gyro;
-import edu.wpi.first.wpilibj.PowerDistribution;
 import edu.wpi.first.wpilibj.drive.DifferentialDrive;
 import edu.wpi.first.wpilibj.motorcontrol.MotorControllerGroup;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
@@ -22,9 +21,6 @@ import frc.robot.Constants.DriveConstants;
 import frc.robot.Constants.RobotPorts;
 
 public class DrivetrainSubsystem extends SubsystemBase {
-  
-  PowerDistribution PowerDistributionPanel = new PowerDistribution();
-  
   private final WPI_TalonFX leftFrontDriveMotor = new WPI_TalonFX(RobotPorts.kLeftFrontMotor);
   private final WPI_TalonFX leftRearDriveMotor = new WPI_TalonFX(RobotPorts.kLeftRearMotor);
   private final WPI_TalonFX rightFrontDriveMotor = new WPI_TalonFX(RobotPorts.kRightFrontMotor);
@@ -107,11 +103,11 @@ public class DrivetrainSubsystem extends SubsystemBase {
     if(error > DriveConstants.kAutoDistanceError){   
       
       //Positive 1st argument = backwards
-      cougarDrive(-Math.signum(distance)*DriveConstants.kAutoHighSpeedRatio, -m_gyro.getAngle()*DriveConstants.kAutoTurnRatio,false,false);
+      cougarDrive(-Math.signum(distance)*DriveConstants.kAutoHighSpeedRatio, -m_gyro.getAngle()*DriveConstants.kAutoTurnRatioHigh,false,false);
       System.out.println("Auto High Speed Ratio: " + DriveConstants.kAutoHighSpeedRatio);
     }  
     else if(error <= DriveConstants.kAutoDistanceError){  
-      cougarDrive(-Math.signum(distance)*DriveConstants.kAutoLowSpeedRatio, -m_gyro.getAngle()*DriveConstants.kAutoTurnRatio,false,false);
+      cougarDrive(-Math.signum(distance)*DriveConstants.kAutoLowSpeedRatio, -m_gyro.getAngle()*DriveConstants.kAutoTurnRatioHigh,false,false);
       System.out.println("Near target - slow down:" + DriveConstants.kAutoLowSpeedRatio);
     }
     else {
@@ -124,8 +120,11 @@ public class DrivetrainSubsystem extends SubsystemBase {
     double angle = m_gyro.getAngle();
     double target = angle + AngleTarget;
 
-    if(Math.abs(target) > DriveConstants.kAutoAngleError){
-      cougarDrive(0, -Math.signum(target)*(Math.abs(target)*DriveConstants.kAutoTurnRatio) + DriveConstants.kAutoMinRotRatio,false,false);
+    if(Math.abs(target) > DriveConstants.kAutoAngleErrorHigh){
+      cougarDrive(0, -Math.signum(target)*(Math.abs(target)*DriveConstants.kAutoTurnRatioHigh) + DriveConstants.kAutoMinRotRatio,false,false);
+    }
+    else if(Math.abs(target) > DriveConstants.kAutoAngleErrorLow){
+      cougarDrive(0, -Math.signum(target)*(Math.abs(target)*DriveConstants.kAutoTurnRatioLow) + DriveConstants.kAutoMinRotRatio,false,false);
     }
     else {
       cougarDrive(0, 0, false,false);
@@ -161,9 +160,6 @@ public class DrivetrainSubsystem extends SubsystemBase {
   public void setMaxOutput(double maxOutput) {
     m_drive.setMaxOutput(maxOutput);
   }
-
-  
-
 
   @Override
   public void periodic() {

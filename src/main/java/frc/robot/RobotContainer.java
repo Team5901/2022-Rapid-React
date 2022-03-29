@@ -75,7 +75,7 @@ public class RobotContainer {
             Controller1.getLeftY(),
             -Controller1.getRightX(),Controller1.getXButton(),Controller1.getLeftStickButton()), m_DrivetrainSubsystem));
 
-    m_LEDSubsystem.setDefaultCommand(new RunCommand(() -> m_LEDSubsystem.Gold(),m_LEDSubsystem));
+    m_LEDSubsystem.setDefaultCommand(new RunCommand(() -> m_LEDSubsystem.Aqua(),m_LEDSubsystem));
 
     // Configure the button bindings
     configureButtonBindings();
@@ -86,7 +86,7 @@ public class RobotContainer {
 
     //Autonomous procedures
 
-    auto.setDefaultOption("Shoot and reverse", new ShootHigh(m_ShooterSubsystem,m_IntakeSubsystem,m_LEDSubsystem).withTimeout(3) 
+    auto.setDefaultOption("Shoot and reverse", new ShootHigh(m_ShooterSubsystem,m_IntakeSubsystem,m_LEDSubsystem).withTimeout(2.5) 
     .andThen(new AutoDrive(-150.0, m_DrivetrainSubsystem)));
 
     auto.addOption("wait, Shoot and reverse", new WaitCommand(2) 
@@ -95,19 +95,20 @@ public class RobotContainer {
 
     auto.addOption("Reverse", new AutoDrive(-300.0, m_DrivetrainSubsystem));
 
-    auto.addOption("Auto Drive 3.0 position A", new ShootHigh(m_ShooterSubsystem, m_IntakeSubsystem,m_LEDSubsystem).withTimeout(3)
+    auto.addOption("Auto Drive 3.0 position A", new ShootHigh(m_ShooterSubsystem, m_IntakeSubsystem,m_LEDSubsystem).withTimeout(2.5)
     .andThen(new AutoTurn(180, m_DrivetrainSubsystem))
-    .andThen(new ActivateIntake(m_IntakeSubsystem,m_LEDSubsystem).alongWith(new AutoDrive(58,m_DrivetrainSubsystem)).withTimeout(3))
+    .andThen(new ActivateIntake(m_IntakeSubsystem,m_LEDSubsystem).alongWith(new AutoDrive(300,m_DrivetrainSubsystem)).withTimeout(3))
     .andThen(new AutoTurn(180,m_DrivetrainSubsystem))
-    .andThen(new AutoDrive(58,m_DrivetrainSubsystem))
-    .andThen(new ShootHigh(m_ShooterSubsystem, m_IntakeSubsystem,m_LEDSubsystem)));
+    .andThen(new AutoDrive(300,m_DrivetrainSubsystem))
+    .andThen(new ShootHigh(m_ShooterSubsystem, m_IntakeSubsystem,m_LEDSubsystem))
+    );
 
-    auto.addOption("Auto 3.0 position B", new ShootHigh(m_ShooterSubsystem,m_IntakeSubsystem,m_LEDSubsystem).withTimeout(3)
+    auto.addOption("Auto 3.0 position B", new ShootHigh(m_ShooterSubsystem,m_IntakeSubsystem,m_LEDSubsystem).withTimeout(2.5)
     .andThen(new AutoTurn(135, m_DrivetrainSubsystem))
     .andThen(new ActivateIntake(m_IntakeSubsystem,m_LEDSubsystem).alongWith(new AutoDrive(150.0, m_DrivetrainSubsystem)))
     .andThen(new AutoTurn(-135, m_DrivetrainSubsystem))
     .andThen(new AutoDrive(150, m_DrivetrainSubsystem))
-    .andThen(new ShootHigh(m_ShooterSubsystem, m_IntakeSubsystem,m_LEDSubsystem).withTimeout(3)));
+    .andThen(new ShootHigh(m_ShooterSubsystem, m_IntakeSubsystem,m_LEDSubsystem).withTimeout(2.5)));
 
 
     SmartDashboard.putData("Auto Chooser", auto);
@@ -124,15 +125,12 @@ public class RobotContainer {
      * ##### CONTROLLER 1 - PRIMARY #####
      * ##################################*/
 
-    
-    
-
-    
-
-    
-
     new JoystickButton(Controller1, Button.kB.value)
     .whenHeld(new ShootHigh(m_ShooterSubsystem,m_IntakeSubsystem,m_LEDSubsystem));
+
+    new JoystickButton (Controller1, Button.kA.value)
+    .whenHeld(new AutoAim(m_DrivetrainSubsystem, m_VisionSubsystem));
+
 /* Second Controller Commands    */
     new JoystickButton(Controller2, Button.kRightBumper.value)
     .whenHeld(new LoadCargoIn(m_IntakeSubsystem));

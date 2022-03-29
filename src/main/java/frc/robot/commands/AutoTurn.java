@@ -49,6 +49,6 @@ public class AutoTurn extends CommandBase {
   // Returns true when the command should end.
   @Override
   public boolean isFinished() {
-    return Math.abs(m_DrivetrainSubsystem.getAngle()) >= m_angle;
+    return false; //Math.abs(m_DrivetrainSubsystem.getAngle()) >= m_angle;
   }
 }

@@ -61,9 +61,9 @@ public final class Constants {
         public static final double kAutoDistanceError = 20;         //Threshold acceptable distance error for auto
         public static final double kAutoMinFwdRatio = 0;            //Minimum power required to move robot
 
-        public static final double kAutoTurnRatioLow = -0.05;           //-0.1 is good doesnt work Adjusts how quickly we turn in auto     
-        public static final double kAutoTurnRatioHigh = -0.1;           //-0.1 is good doesnt work Adjusts how quickly we turn in auto  
-        public static final double kAutoMinRotRatio = -.07;          //Minimum power required to turn robot
+        public static final double kAutoTurnRatioLow = -0.005;           //-0.1 is good doesnt work Adjusts how quickly we turn in auto     
+        public static final double kAutoTurnRatioHigh = -0.005;           //-0.1 is good doesnt work Adjusts how quickly we turn in auto  
+        public static final double kAutoMinRotRatio = -0.6;          //Minimum power required to turn robot
 
         //Error thresholds
         public static final double kAutoAngleErrorLow = 1;             //Threshold acceptable low angle error for auto
@@ -98,9 +98,9 @@ public final class Constants {
 
     public static final class ShooterConstants{
         
-        public static final double kShoot_highRPM = 2400; //Initiation
+        public static final double kShoot_highRPM = 3000; //Initiation
 
-        public static final double kLoaderSpeed = 0.3; //DETROIT COMP = 0.2 GOOD
+        public static final double kLoaderSpeed = 0.2; //DETROIT COMP = 0.2 GOOD
      
         public static final int kMotorPort = 5;
         public static final int kTimeoutMs = 30;

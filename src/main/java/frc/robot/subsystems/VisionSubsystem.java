@@ -7,11 +7,16 @@
 
 package frc.robot.subsystems;
 
+import javax.management.remote.TargetedNotification;
+
+import org.ejml.interfaces.decomposition.DecompositionSparseInterface;
+
 import edu.wpi.first.networktables.NetworkTable;
 import edu.wpi.first.networktables.NetworkTableEntry;
 import edu.wpi.first.networktables.NetworkTableInstance;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
+import java.lang.Math;
 
 public class VisionSubsystem extends SubsystemBase {
 
@@ -65,6 +70,14 @@ public class VisionSubsystem extends SubsystemBase {
 
     //take one snapshot
     NetworkTableInstance.getDefault().getTable("limelight").getEntry("ledMode").setNumber(1); 
+  }
+  public double calculateDistance(double angle){
+    double B;
+    B = 72;
+    double A;
+    A = B/ Math.tan(angle);
+    
+    return A;
   }
 
   @Override

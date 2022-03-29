@@ -95,17 +95,17 @@ public class RobotContainer {
     auto.addOption("Reverse", new AutoDrive(-300.0, m_DrivetrainSubsystem));
 
     auto.addOption("Auto Drive 3.0 position A", new ShootHigh(m_ShooterSubsystem,m_LEDSubsystem).withTimeout(2.5)
-    .andThen(new AutoTurn(180, m_DrivetrainSubsystem))
+    .andThen(new AutoTurn(180, m_DrivetrainSubsystem)).withTimeout(2)
     .andThen(new ActivateIntake(m_IntakeSubsystem,m_LEDSubsystem).alongWith(new AutoDrive(300,m_DrivetrainSubsystem)).withTimeout(3))
-    .andThen(new AutoTurn(180,m_DrivetrainSubsystem))
+    .andThen(new AutoTurn(180,m_DrivetrainSubsystem)).withTimeout(2)
     .andThen(new AutoDrive(300,m_DrivetrainSubsystem))
     .andThen(new ShootHigh(m_ShooterSubsystem,m_LEDSubsystem))
     );
 
     auto.addOption("Auto 3.0 position B", new ShootHigh(m_ShooterSubsystem,m_LEDSubsystem).withTimeout(2.5)
-    .andThen(new AutoTurn(135, m_DrivetrainSubsystem))
+    .andThen(new AutoTurn(135, m_DrivetrainSubsystem)).withTimeout(2)
     .andThen(new ActivateIntake(m_IntakeSubsystem,m_LEDSubsystem).alongWith(new AutoDrive(150.0, m_DrivetrainSubsystem)))
-    .andThen(new AutoTurn(-135, m_DrivetrainSubsystem))
+    .andThen(new AutoTurn(-135, m_DrivetrainSubsystem)).withTimeout(2)
     .andThen(new AutoDrive(150, m_DrivetrainSubsystem))
     .andThen(new ShootHigh(m_ShooterSubsystem,m_LEDSubsystem).withTimeout(2.5)));
 

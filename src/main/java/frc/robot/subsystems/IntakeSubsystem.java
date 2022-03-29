@@ -86,7 +86,7 @@ public class IntakeSubsystem extends SubsystemBase {
   @Override
   public void periodic()
    {
-     SmartDashboard.getBoolean("Ball Sensor Tripped", ballExist());
+    //SmartDashboard.getBoolean("Ball Sensor Tripped", ballExist());
     // This method will be called once per scheduler run
   }
 }

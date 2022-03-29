@@ -7,6 +7,9 @@
 
 package frc.robot.commands;
 
+import java.lang.annotation.Target;
+
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.CommandBase;
 import frc.robot.Constants;
 import frc.robot.subsystems.DrivetrainSubsystem;
@@ -26,18 +29,25 @@ public class AutoAim extends CommandBase {
   // Called when the command is initially scheduled.
   @Override
   public void initialize() {
+    m_VisionSubsystem.turnOnLED();
     m_VisionSubsystem.setPipeline(0);
   }
+  
 
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
-    m_VisionSubsystem.turnOnLED();
-    double TargetAngle = m_DrivetrainSubsystem.getAngle();
 
-    if (m_VisionSubsystem.targetAvailable() == true && Math.abs(TargetAngle) >= 1.0 ){
-        System.out.println("Target Acquired - Rotating");
-        m_DrivetrainSubsystem.cougarDrive(Constants.DriveConstants.kVisionSpeedRatio, Constants.DriveConstants.kVisionTurnRatio*TargetAngle,false,false);
+    double TargetAngle = m_VisionSubsystem.getTx();
+
+    if (m_VisionSubsystem.targetAvailable() == true && Math.abs(TargetAngle) >= 3.0 ){
+        System.out.println("Target Acquired - Rotating:" + TargetAngle);
+        m_DrivetrainSubsystem.cougarDrive(Constants.DriveConstants.kVisionSpeedRatio, Constants.DriveConstants.kVisionTurnRatioHighError*TargetAngle,false,false);
+
+    }
+    else if (m_VisionSubsystem.targetAvailable() == true && Math.abs(TargetAngle) >= 1.0 ){
+      System.out.println("Target Acquired - Rotating" + TargetAngle);
+      m_DrivetrainSubsystem.cougarDrive(Constants.DriveConstants.kVisionSpeedRatio, Constants.DriveConstants.kVisionTurnRatioLowError*TargetAngle,false,false);
 
     }
     else if (m_VisionSubsystem.targetAvailable() == true && Math.abs(TargetAngle) < 1.0 ) {
@@ -47,7 +57,6 @@ public class AutoAim extends CommandBase {
     else {
         System.out.println("No Target Available");
     }
-    
   }
 
   // Called once the command ends or is interrupted.

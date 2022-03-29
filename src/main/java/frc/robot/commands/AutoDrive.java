@@ -31,6 +31,7 @@ public class AutoDrive extends CommandBase {
   @Override
   public void initialize() {
     m_DrivetrainSubsystem.resetEncoders();
+    m_DrivetrainSubsystem.resetAngle();
   }
   
  

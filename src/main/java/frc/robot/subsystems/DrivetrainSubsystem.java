@@ -76,17 +76,15 @@ public class DrivetrainSubsystem extends SubsystemBase {
     double x = Math.pow(fwd,3.0);
   
     double y = Math.pow(rot,3.0);
-    //System.out.println("1st x: " + x);
-    m_drive.arcadeDrive(Math.max(-0.7,Math.min(0.7,x)),Math.max(-0.6,Math.min(0.6,y)));
     
     if(climbMode == true){
-      m_drive.arcadeDrive(Math.max(-0.5,Math.min(0.5,x)),Math.max(-0.6,Math.min(0.6,y)));
+      m_drive.arcadeDrive(Math.max(-DriveConstants.kClimbSpeedRatio,Math.min(DriveConstants.kClimbSpeedRatio,x)),Math.max(-DriveConstants.kLimitTurnRatio,Math.min(DriveConstants.kLimitTurnRatio,y)));
     }
     else if(turboMode == true){
-      m_drive.arcadeDrive(Math.max(-0.9,Math.min(0.9,x)),Math.max(-0.6,Math.min(0.6,y)));
+      m_drive.arcadeDrive(Math.max(-DriveConstants.kHighSpeedRatio,Math.min(DriveConstants.kHighSpeedRatio,x)),Math.max(-DriveConstants.kLimitTurnRatio,Math.min(DriveConstants.kLimitTurnRatio,y)));
     }
     else{
-      m_drive.arcadeDrive(Math.max(-0.7,Math.min(0.7,x)),Math.max(-0.6,Math.min(0.6,y)));
+      m_drive.arcadeDrive(Math.max(-DriveConstants.kLowSpeedRatio,Math.min(DriveConstants.kLowSpeedRatio,x)),Math.max(-DriveConstants.kLimitTurnRatio,Math.min(DriveConstants.kLimitTurnRatio,y)));
     }
 
   }
@@ -121,10 +119,10 @@ public class DrivetrainSubsystem extends SubsystemBase {
     double target = angle + AngleTarget;
 
     if(Math.abs(target) > DriveConstants.kAutoAngleErrorHigh){
-      cougarDrive(0, -Math.signum(target)*(Math.abs(target)*DriveConstants.kAutoTurnRatioHigh) + DriveConstants.kAutoMinRotRatio,false,false);
+      cougarDrive(0, -Math.signum(target)*(Math.abs(target)*DriveConstants.kAutoTurnRatioHigh + DriveConstants.kAutoMinRotRatio),false,false);
     }
     else if(Math.abs(target) > DriveConstants.kAutoAngleErrorLow){
-      cougarDrive(0, -Math.signum(target)*(Math.abs(target)*DriveConstants.kAutoTurnRatioLow) + DriveConstants.kAutoMinRotRatio,false,false);
+      cougarDrive(0, -Math.signum(target)*(Math.abs(target)*DriveConstants.kAutoTurnRatioLow + DriveConstants.kAutoMinRotRatio),false,false);
     }
     else {
       cougarDrive(0, 0, false,false);

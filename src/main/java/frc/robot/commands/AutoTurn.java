@@ -21,6 +21,7 @@ public class AutoTurn extends CommandBase {
     // Use addRequirements() here to declare subsystem dependencies.
     m_angle = angle;
     m_DrivetrainSubsystem = drive;
+    addRequirements(drive);
   }
 
   // Called when the command is initially scheduled.
@@ -42,6 +43,7 @@ public class AutoTurn extends CommandBase {
   @Override
   public void end(boolean interrupted) {
     m_DrivetrainSubsystem.TurnControl(0);
+    System.out.println("AutoTurn End: " + m_DrivetrainSubsystem.getAngle());
   }
 
   // Returns true when the command should end.

@@ -11,18 +11,21 @@ import java.lang.annotation.Target;
 
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.CommandBase;
-import frc.robot.Constants;
+import frc.robot.Constants.DriveConstants;
 import frc.robot.subsystems.DrivetrainSubsystem;
+import frc.robot.subsystems.LEDSubsystem;
 import frc.robot.subsystems.VisionSubsystem;
 
 public class AutoAim extends CommandBase {
   final DrivetrainSubsystem m_DrivetrainSubsystem;
   final VisionSubsystem m_VisionSubsystem;
+  final LEDSubsystem m_LEDSubsystem;
 
-  public AutoAim(DrivetrainSubsystem subsystem1, VisionSubsystem subsystem2) {
+  public AutoAim(DrivetrainSubsystem subsystem1, VisionSubsystem subsystem2, LEDSubsystem subsystem3) {
     m_DrivetrainSubsystem = subsystem1;
     m_VisionSubsystem = subsystem2;
-    addRequirements(subsystem1,subsystem2);
+    m_LEDSubsystem = subsystem3;
+    addRequirements(subsystem1,subsystem2,subsystem3);
 
   }
 
@@ -31,6 +34,7 @@ public class AutoAim extends CommandBase {
   public void initialize() {
     m_VisionSubsystem.turnOnLED();
     m_VisionSubsystem.setPipeline(0);
+    m_VisionSubsystem.takeSnapshot();
   }
   
 
@@ -41,21 +45,21 @@ public class AutoAim extends CommandBase {
     double TargetAngle = m_VisionSubsystem.getTx();
 
     if (m_VisionSubsystem.targetAvailable() == true && Math.abs(TargetAngle) >= 3.0 ){
-        System.out.println("Target Acquired - Rotating:" + TargetAngle);
-        m_DrivetrainSubsystem.cougarDrive(Constants.DriveConstants.kVisionSpeedRatio, Constants.DriveConstants.kVisionTurnRatioHighError*TargetAngle,false,false);
-
+      System.out.println("Target Acquired - Rotating:" + TargetAngle);
+      m_DrivetrainSubsystem.cougarDrive(DriveConstants.kVisionSpeedRatio, DriveConstants.kAutoTurnRatioHigh*TargetAngle + Math.signum(TargetAngle)*DriveConstants.kAutoMinRotRatio,false,false);
+      m_LEDSubsystem.Heartbeat_Red();    
     }
     else if (m_VisionSubsystem.targetAvailable() == true && Math.abs(TargetAngle) >= 1.0 ){
       System.out.println("Target Acquired - Rotating" + TargetAngle);
-      m_DrivetrainSubsystem.cougarDrive(Constants.DriveConstants.kVisionSpeedRatio, Constants.DriveConstants.kVisionTurnRatioLowError*TargetAngle,false,false);
-
+      m_DrivetrainSubsystem.cougarDrive(DriveConstants.kVisionSpeedRatio, DriveConstants.kAutoTurnRatioLow*TargetAngle + Math.signum(TargetAngle)*DriveConstants.kAutoMinRotRatio,false,false);
+      m_LEDSubsystem.Heartbeat_Red();    
     }
     else if (m_VisionSubsystem.targetAvailable() == true && Math.abs(TargetAngle) < 1.0 ) {
-        System.out.println("Target Angle Reached");
-             
+      System.out.println("Vision Target Angle Reached:" + TargetAngle);
+      m_LEDSubsystem.Lime();
     }
     else {
-        System.out.println("No Target Available");
+      System.out.println("No Vision Target Available");
     }
   }
 

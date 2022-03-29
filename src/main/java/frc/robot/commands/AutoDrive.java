@@ -32,6 +32,7 @@ public class AutoDrive extends CommandBase {
   public void initialize() {
     m_DrivetrainSubsystem.resetEncoders();
     m_DrivetrainSubsystem.resetAngle();
+    System.out.println("Autodrive: " + m_distance);
   }
   
  
@@ -47,6 +48,7 @@ public class AutoDrive extends CommandBase {
   @Override
   public void end(boolean interrupted) {
     m_DrivetrainSubsystem.AutoDroive(0);
+    System.out.println("Autodrive End: " + (Math.abs(m_distance) - Math.abs(m_DrivetrainSubsystem.getAverageEncoderDistance())));
   }
 
   // Returns true when the command should end.

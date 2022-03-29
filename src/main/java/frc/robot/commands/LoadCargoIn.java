@@ -19,19 +19,19 @@ public class LoadCargoIn extends CommandBase {
   // Called when the command is initially scheduled.
   @Override
   public void initialize() {
-    System.out.println("LoaderIn running well");
+    System.out.println("LoaderIn running");
   }
 
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
-    m_IntakeSubsystem.LoaderIn();
+    m_IntakeSubsystem.MidtakeOut();
   }
 
   // Called once the command ends or is interrupted.
   @Override
   public void end(boolean interrupted) {
-    m_IntakeSubsystem.LoaderStop(); 
+    m_IntakeSubsystem.MidtakeStop(); 
   }
 
   // Returns true when the command should end.

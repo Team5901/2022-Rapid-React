@@ -33,12 +33,12 @@ public class ActivateIntake extends CommandBase {
     m_IntakeSubsystem.MidtakeOn();
     m_LEDSubsystem.Lime();
 
-    //if(m_IntakeSubsystem.ballExist()){
-    //  m_IntakeSubsystem.LoaderIn();
-    //}
-    //else{
-    //  m_IntakeSubsystem.LoaderStop();
-    //}
+    if(m_IntakeSubsystem.ballExist()){
+      m_LEDSubsystem.Lime();
+    }
+    else{
+      m_LEDSubsystem.White();
+    }
   }
 
   // Called once the command ends or is interrupted.

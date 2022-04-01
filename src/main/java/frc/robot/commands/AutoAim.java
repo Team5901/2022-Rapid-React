@@ -32,9 +32,9 @@ public class AutoAim extends CommandBase {
   // Called when the command is initially scheduled.
   @Override
   public void initialize() {
-    m_VisionSubsystem.turnOnLED();
+    //m_VisionSubsystem.turnOnLED();
     m_VisionSubsystem.setPipeline(0);
-    m_VisionSubsystem.takeSnapshot();
+    //m_VisionSubsystem.takeSnapshot();
   }
   
 
@@ -44,17 +44,17 @@ public class AutoAim extends CommandBase {
 
     double TargetAngle = m_VisionSubsystem.getTx();
 
-    if (m_VisionSubsystem.targetAvailable() == true && Math.abs(TargetAngle) >= 3.0 ){
+    if (m_VisionSubsystem.targetAvailable() == true && Math.abs(TargetAngle) >= 5.0 ){
       System.out.println("Target Acquired - Rotating:" + TargetAngle);
       m_DrivetrainSubsystem.cougarDrive(DriveConstants.kVisionSpeedRatio, DriveConstants.kAutoTurnRatioHigh*TargetAngle + Math.signum(TargetAngle)*DriveConstants.kAutoMinRotRatio,false,false);
       m_LEDSubsystem.Heartbeat_Red();    
     }
-    else if (m_VisionSubsystem.targetAvailable() == true && Math.abs(TargetAngle) >= 1.0 ){
+    else if (m_VisionSubsystem.targetAvailable() == true && Math.abs(TargetAngle) >= 3.0 ){
       System.out.println("Target Acquired - Rotating" + TargetAngle);
       m_DrivetrainSubsystem.cougarDrive(DriveConstants.kVisionSpeedRatio, DriveConstants.kAutoTurnRatioLow*TargetAngle + Math.signum(TargetAngle)*DriveConstants.kAutoMinRotRatio,false,false);
       m_LEDSubsystem.Heartbeat_Red();    
     }
-    else if (m_VisionSubsystem.targetAvailable() == true && Math.abs(TargetAngle) < 1.0 ) {
+    else if (m_VisionSubsystem.targetAvailable() == true && Math.abs(TargetAngle) < 3.0 ) {
       System.out.println("Vision Target Angle Reached:" + TargetAngle);
       m_LEDSubsystem.Lime();
     }

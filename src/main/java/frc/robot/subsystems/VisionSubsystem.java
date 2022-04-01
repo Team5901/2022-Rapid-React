@@ -75,8 +75,8 @@ public class VisionSubsystem extends SubsystemBase {
     double B;
     B = 72;
     double A;
-    A = B/ Math.tan(angle);
-    
+    A = B/ Math.tan(angle * Math.PI / 180);
+        
     return A;
   }
 
@@ -84,6 +84,7 @@ public class VisionSubsystem extends SubsystemBase {
   public void periodic(){
     SmartDashboard.putNumber("Limelight Target Angle", getTx());
     SmartDashboard.putBoolean("Limelight Target Available",targetAvailable());
+    SmartDashboard.putNumber("Distance Estimation", calculateDistance(getTy()));
   }
   
 

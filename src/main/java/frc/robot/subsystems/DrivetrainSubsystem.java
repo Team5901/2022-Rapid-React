@@ -85,8 +85,7 @@ public class DrivetrainSubsystem extends SubsystemBase {
     }
     else{
       m_drive.arcadeDrive(Math.max(-DriveConstants.kLowSpeedRatio,Math.min(DriveConstants.kLowSpeedRatio,x)),Math.max(-DriveConstants.kLimitTurnRatio,Math.min(DriveConstants.kLimitTurnRatio,y)));
-    }
-
+    }  
   }
   
   public void AutoDroive(double distance) {
@@ -101,11 +100,11 @@ public class DrivetrainSubsystem extends SubsystemBase {
     if(error > DriveConstants.kAutoDistanceError){   
       
       //Positive 1st argument = backwards
-      cougarDrive(-Math.signum(distance)*DriveConstants.kAutoHighSpeedRatio, -m_gyro.getAngle()*DriveConstants.kAutoTurnRatioHigh,false,false);
+      m_drive.arcadeDrive(-Math.signum(distance)*(DriveConstants.kAutoHighSpeedRatio + DriveConstants.kAutoMinFwdRatio), -m_gyro.getAngle()*DriveConstants.kAutoTurnRatioHigh);
       System.out.println("Auto High Speed Ratio: " + DriveConstants.kAutoHighSpeedRatio);
     }  
     else if(error <= DriveConstants.kAutoDistanceError){  
-      cougarDrive(-Math.signum(distance)*DriveConstants.kAutoLowSpeedRatio, -m_gyro.getAngle()*DriveConstants.kAutoTurnRatioHigh,false,false);
+      m_drive.arcadeDrive(-Math.signum(distance)*DriveConstants.kAutoLowSpeedRatio + DriveConstants.kAutoMinFwdRatio, -m_gyro.getAngle()*DriveConstants.kAutoTurnRatioHigh);
       System.out.println("Near target - slow down:" + DriveConstants.kAutoLowSpeedRatio);
     }
     else {

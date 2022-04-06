@@ -33,7 +33,7 @@ public class AutoAim extends CommandBase {
   @Override
   public void initialize() {
     //m_VisionSubsystem.turnOnLED();
-    m_VisionSubsystem.setPipeline(0);
+    //m_VisionSubsystem.setPipeline(0);
     //m_VisionSubsystem.takeSnapshot();
   }
   
@@ -54,9 +54,21 @@ public class AutoAim extends CommandBase {
       m_DrivetrainSubsystem.cougarDrive(DriveConstants.kVisionSpeedRatio, DriveConstants.kAutoTurnRatioLow*TargetAngle + Math.signum(TargetAngle)*DriveConstants.kAutoMinRotRatio,false,false);
       m_LEDSubsystem.Heartbeat_Red();    
     }
+    else if (m_VisionSubsystem.targetAvailable() == true && Math.abs(TargetAngle) < 3.0 && m_VisionSubsystem.calculateDistance(m_VisionSubsystem.getTy()) < 170 ) {
+      System.out.println("Vision Target Angle Reached but too close:" + TargetAngle);
+      m_DrivetrainSubsystem.cougarDrive(0.8, 0,false,false);
+      m_LEDSubsystem.HotPink();
+    }
+    else if (m_VisionSubsystem.targetAvailable() == true && Math.abs(TargetAngle) < 3.0 && m_VisionSubsystem.calculateDistance(m_VisionSubsystem.getTy()) > 230 ) {
+      System.out.println("Vision Target Angle Reached but too close:" + TargetAngle);
+      m_DrivetrainSubsystem.cougarDrive(-0.8, 0,false,false);
+      m_LEDSubsystem.HotPink();
+    }
+    
     else if (m_VisionSubsystem.targetAvailable() == true && Math.abs(TargetAngle) < 3.0 ) {
       System.out.println("Vision Target Angle Reached:" + TargetAngle);
-      m_LEDSubsystem.Lime();
+      m_LEDSubsystem.Lime(); 
+      m_DrivetrainSubsystem.cougarDrive(-0.0, 0,false,false);
     }
     else {
       System.out.println("No Vision Target Available");
@@ -66,7 +78,7 @@ public class AutoAim extends CommandBase {
   // Called once the command ends or is interrupted.
   @Override
   public void end(boolean interrupted) {
-    m_VisionSubsystem.turnOffLED();
+    //m_VisionSubsystem.turnOffLED();
   }
 
   // Returns true when the command should end.

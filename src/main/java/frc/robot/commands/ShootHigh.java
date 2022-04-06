@@ -15,11 +15,13 @@ public class ShootHigh extends CommandBase {
   /** Creates a new ShootHigh. */
   final LEDSubsystem m_LEDSubsystem;
   final ShooterSubsystem m_ShooterSubsystem;
+  final IntakeSubsystem m_IntakeSubsystem;
 
-  public ShootHigh(ShooterSubsystem subsystem1, LEDSubsystem subsystem2) {
+  public ShootHigh(ShooterSubsystem subsystem1, IntakeSubsystem subsystem2, LEDSubsystem subsystem3) {
     m_ShooterSubsystem = subsystem1;
-    m_LEDSubsystem = subsystem2;
-    addRequirements(subsystem1, subsystem2);
+    m_IntakeSubsystem = subsystem2;
+    m_LEDSubsystem = subsystem3;
+    addRequirements(subsystem1, subsystem2, subsystem3);
     // Use addRequirements() here to declare subsystem dependencies.
   }
 
@@ -34,8 +36,10 @@ public class ShootHigh extends CommandBase {
   public void execute() {
     m_ShooterSubsystem.shooterSpeedUp(ShooterConstants.kShoot_highRPM);
 
-    if(m_ShooterSubsystem.getShooterRPM() > Constants.ShooterConstants.kShoot_highRPM-100){
+    if(m_ShooterSubsystem.getShooterRPM() > Constants.ShooterConstants.kShoot_highRPM-50){
       m_ShooterSubsystem.LoaderIn();
+      m_IntakeSubsystem.MidtakeOn();
+      m_IntakeSubsystem.IntakeIn();
     m_LEDSubsystem.BlueViolent();
     }
   }
@@ -46,6 +50,8 @@ public class ShootHigh extends CommandBase {
     System.out.println("Stopping SHOOTHIGH command - shooter and loader");
     m_ShooterSubsystem.stopShooter();
     m_ShooterSubsystem.LoaderStop();
+    m_IntakeSubsystem.MidtakeStop();
+    m_IntakeSubsystem.IntakeStop();
   }
 
   // Returns true when the command should end.

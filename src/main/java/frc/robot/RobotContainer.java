@@ -85,8 +85,12 @@ public class RobotContainer {
 
     //Autonomous procedures
 
-    auto.setDefaultOption("Shoot and reverse", new ShootHigh(m_ShooterSubsystem,m_IntakeSubsystem,m_LEDSubsystem).withTimeout(2.5) 
-    .andThen(new AutoDrive(-150.0, m_DrivetrainSubsystem)));
+    //auto.setDefaultOption("Shoot and reverse", new ShootHigh(m_ShooterSubsystem,m_IntakeSubsystem,m_LEDSubsystem).withTimeout(2.5) 
+    //.andThen(new AutoDrive(-150.0, m_DrivetrainSubsystem)));
+
+    auto.setDefaultOption("reverse and shoot", new AutoDrive(-150.0, m_DrivetrainSubsystem).withTimeout(2)
+    .andThen(new AutoAim(m_DrivetrainSubsystem,m_VisionSubsystem,m_LEDSubsystem).withTimeout(2))
+    .andThen(new ShootHigh(m_ShooterSubsystem,m_IntakeSubsystem,m_LEDSubsystem).withTimeout(2.5)));
 
     auto.addOption("wait, Shoot and reverse", new WaitCommand(2) 
     .andThen(new ShootHigh(m_ShooterSubsystem,m_IntakeSubsystem,m_LEDSubsystem).withTimeout(3))

@@ -54,6 +54,6 @@ public class AutoDrive extends CommandBase {
   // Returns true when the command should end.
   @Override
   public boolean isFinished() {
-    return ((Math.abs(m_distance) - Math.abs(m_DrivetrainSubsystem.getAverageEncoderDistance())) <=  Constants.DriveConstants.kAutoDistanceError);
+    return false; //((Math.abs(m_distance) - Math.abs(m_DrivetrainSubsystem.getAverageEncoderDistance())) <=  Constants.DriveConstants.kAutoDistanceError);
   }
 }

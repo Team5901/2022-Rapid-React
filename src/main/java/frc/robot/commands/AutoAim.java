@@ -33,7 +33,7 @@ public class AutoAim extends CommandBase {
   @Override
   public void initialize() {
     //m_VisionSubsystem.turnOnLED();
-    //m_VisionSubsystem.setPipeline(0);
+    //m_VisionSubsystem.setPipeline(1);
     //m_VisionSubsystem.takeSnapshot();
   }
   
@@ -59,7 +59,7 @@ public class AutoAim extends CommandBase {
       m_DrivetrainSubsystem.cougarDrive(0.8, 0,false,false);
       m_LEDSubsystem.HotPink();
     }
-    else if (m_VisionSubsystem.targetAvailable() == true && Math.abs(TargetAngle) < 3.0 && m_VisionSubsystem.calculateDistance(m_VisionSubsystem.getTy()) > 230 ) {
+    else if (m_VisionSubsystem.targetAvailable() == true && Math.abs(TargetAngle) < 3.0 && m_VisionSubsystem.calculateDistance(m_VisionSubsystem.getTy()) > 220 ) {
       System.out.println("Vision Target Angle Reached but too close:" + TargetAngle);
       m_DrivetrainSubsystem.cougarDrive(-0.8, 0,false,false);
       m_LEDSubsystem.HotPink();

@@ -92,19 +92,17 @@ public class RobotContainer {
     .andThen(new AutoAim(m_DrivetrainSubsystem,m_VisionSubsystem,m_LEDSubsystem).withTimeout(2))
     .andThen(new ShootHigh(m_ShooterSubsystem,m_IntakeSubsystem,m_LEDSubsystem).withTimeout(2.5)));
 
-    auto.addOption("wait, Shoot and reverse", new WaitCommand(2) 
-    .andThen(new ShootHigh(m_ShooterSubsystem,m_IntakeSubsystem,m_LEDSubsystem).withTimeout(3))
-    .andThen(new AutoDrive(-150.0, m_DrivetrainSubsystem)));
+    auto.addOption("reverse and shoot", new AutoDrive(-150.0, m_DrivetrainSubsystem).withTimeout(2)
+    .andThen(new AutoAim(m_DrivetrainSubsystem,m_VisionSubsystem,m_LEDSubsystem).withTimeout(2))
+    .andThen(new ShootHigh(m_ShooterSubsystem,m_IntakeSubsystem,m_LEDSubsystem).withTimeout(2.5)));
+
+    auto.addOption("position A 3.0", new ActivateIntake(m_IntakeSubsystem,m_LEDSubsystem).alongWith(new AutoDrive(155,m_DrivetrainSubsystem)).withTimeout(3)
+    .andThen(new AutoTurn(180, m_DrivetrainSubsystem).withTimeout(2))
+    .andThen(new AutoAim(m_DrivetrainSubsystem, m_VisionSubsystem, m_LEDSubsystem).withTimeout(2))
+    .andThen(new ShootHigh(m_ShooterSubsystem, m_IntakeSubsystem, m_LEDSubsystem).withTimeout(3)));
 
     auto.addOption("Reverse", new AutoDrive(-300.0, m_DrivetrainSubsystem));
-
-    auto.addOption("Auto Drive 3.0 position A", new ShootHigh(m_ShooterSubsystem,m_IntakeSubsystem,m_LEDSubsystem).withTimeout(1.5)
-    .andThen(new AutoTurn(180, m_DrivetrainSubsystem).withTimeout(2))
-    .andThen(new ActivateIntake(m_IntakeSubsystem,m_LEDSubsystem).alongWith(new AutoDrive(300,m_DrivetrainSubsystem)).withTimeout(3))
-    .andThen(new AutoTurn(180,m_DrivetrainSubsystem).withTimeout(2))
-    .andThen(new AutoDrive(300,m_DrivetrainSubsystem))
-    .andThen(new ShootHigh(m_ShooterSubsystem,m_IntakeSubsystem,m_LEDSubsystem))
-    );
+  
 
     auto.addOption("Auto 3.0 position B", new ShootHigh(m_ShooterSubsystem,m_IntakeSubsystem,m_LEDSubsystem).withTimeout(1.5)
     .andThen(new AutoTurn(135, m_DrivetrainSubsystem).withTimeout(1.5))
@@ -132,15 +130,17 @@ public class RobotContainer {
      * ##### CONTROLLER 1 - DRIVER #####
      * #################################*/
 
-    new JoystickButton(Controller1, Button.kB.value)
-    .whenHeld(new ShootHigh(m_ShooterSubsystem,m_IntakeSubsystem,m_LEDSubsystem));
-
     new JoystickButton (Controller1, Button.kA.value)
     .whenHeld(new AutoAim(m_DrivetrainSubsystem, m_VisionSubsystem,m_LEDSubsystem));
+
+    new JoystickButton(Controller1, Button.kY.value)
+    .whenHeld(new AutoDrive(300, m_DrivetrainSubsystem));
 
     /**###################################
      * ##### CONTROLLER 2 - OPERATOR #####
      * ###################################*/
+    new JoystickButton(Controller2, Button.kB.value)
+    .whenHeld(new ShootHigh(m_ShooterSubsystem,m_IntakeSubsystem,m_LEDSubsystem));
 
     new JoystickButton(Controller2, Button.kRightBumper.value)
     .whenHeld(new ActivateIntake(m_IntakeSubsystem,m_LEDSubsystem));

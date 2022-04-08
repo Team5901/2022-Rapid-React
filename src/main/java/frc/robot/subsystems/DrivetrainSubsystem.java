@@ -74,8 +74,9 @@ public class DrivetrainSubsystem extends SubsystemBase {
   public void cougarDrive(double fwd, double rot, boolean climbMode, boolean turboMode) {
     //System.out.println("Forward: " + fwd);
     double x = Math.pow(fwd,3.0);
-  
     double y = Math.pow(rot,3.0);
+    //double x = fwd;
+    //double y = rot;
     
     if(climbMode == true){
       m_drive.arcadeDrive(Math.max(-DriveConstants.kClimbSpeedRatio,Math.min(DriveConstants.kClimbSpeedRatio,x)),Math.max(-DriveConstants.kLimitTurnRatio,Math.min(DriveConstants.kLimitTurnRatio,y)));

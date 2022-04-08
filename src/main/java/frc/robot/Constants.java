@@ -53,7 +53,7 @@ public final class Constants {
         public static final double kLowSpeedRatio = 0.7;
         public static final double kHighSpeedRatio = 0.9;
         public static final double kClimbSpeedRatio = 0.5;
-        public static final double kLimitTurnRatio = 0.55;
+        public static final double kLimitTurnRatio = 0.50;
 
         //Autonomous Parameters        
         public static final double kAutoHighSpeedRatio = 0.15;           //Fast speed in auto when far from target

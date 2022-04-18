@@ -87,31 +87,19 @@ public class RobotContainer {
 
     //auto.setDefaultOption("Shoot and reverse", new ShootHigh(m_ShooterSubsystem,m_IntakeSubsystem,m_LEDSubsystem).withTimeout(2.5) 
     //.andThen(new AutoDrive(-150.0, m_DrivetrainSubsystem)));
-
-    auto.setDefaultOption("reverse and shoot", new AutoDrive(-150.0, m_DrivetrainSubsystem).withTimeout(2)
-    .andThen(new AutoAim(m_DrivetrainSubsystem,m_VisionSubsystem,m_LEDSubsystem).withTimeout(2))
-    .andThen(new ShootHigh(m_ShooterSubsystem,m_IntakeSubsystem,m_LEDSubsystem).withTimeout(2.5)));
-
-    auto.addOption("reverse and shoot", new AutoDrive(-150.0, m_DrivetrainSubsystem).withTimeout(2)
-    .andThen(new AutoAim(m_DrivetrainSubsystem,m_VisionSubsystem,m_LEDSubsystem).withTimeout(2))
-    .andThen(new ShootHigh(m_ShooterSubsystem,m_IntakeSubsystem,m_LEDSubsystem).withTimeout(2.5)));
-
-    auto.addOption("position A 3.0", new ActivateIntake(m_IntakeSubsystem,m_LEDSubsystem).alongWith(new AutoDrive(155,m_DrivetrainSubsystem)).withTimeout(3)
+    auto.setDefaultOption("position A/B 3.0", new ActivateIntake(m_IntakeSubsystem,m_LEDSubsystem).alongWith(new AutoDrive(130,m_DrivetrainSubsystem)).withTimeout(3)
     .andThen(new AutoTurn(180, m_DrivetrainSubsystem).withTimeout(2))
-    .andThen(new AutoAim(m_DrivetrainSubsystem, m_VisionSubsystem, m_LEDSubsystem).withTimeout(2))
-    .andThen(new ShootHigh(m_ShooterSubsystem, m_IntakeSubsystem, m_LEDSubsystem).withTimeout(3)));
+    .andThen(new AutoAim(m_DrivetrainSubsystem, m_VisionSubsystem, m_LEDSubsystem).withTimeout(4))
+    .andThen(new ShootHigh(m_ShooterSubsystem, m_IntakeSubsystem, m_LEDSubsystem).withTimeout(2)));
 
+    auto.addOption("position C 3.0", new ActivateIntake(m_IntakeSubsystem,m_LEDSubsystem).alongWith(new AutoDrive(100,m_DrivetrainSubsystem)).withTimeout(3)
+    .andThen(new AutoTurn(180, m_DrivetrainSubsystem).withTimeout(2))
+    .andThen(new AutoAim(m_DrivetrainSubsystem, m_VisionSubsystem, m_LEDSubsystem).withTimeout(3))
+    .andThen(new ShootHigh(m_ShooterSubsystem, m_IntakeSubsystem, m_LEDSubsystem).withTimeout(2)));
+    
+    
     auto.addOption("Reverse", new AutoDrive(-300.0, m_DrivetrainSubsystem));
   
-
-    auto.addOption("Auto 3.0 position B", new ShootHigh(m_ShooterSubsystem,m_IntakeSubsystem,m_LEDSubsystem).withTimeout(1.5)
-    .andThen(new AutoTurn(135, m_DrivetrainSubsystem).withTimeout(1.5))
-    .andThen(new ActivateIntake(m_IntakeSubsystem,m_LEDSubsystem).alongWith(new AutoDrive(150.0, m_DrivetrainSubsystem)).withTimeout(4))
-    .andThen(new AutoTurn(-180, m_DrivetrainSubsystem).withTimeout(1.5))
-    .andThen(new AutoDrive(150, m_DrivetrainSubsystem).withTimeout(3))
-    .andThen(new AutoTurn(45, m_DrivetrainSubsystem).withTimeout(1.5))
-    );
-
     auto.addOption("Turn 180", new AutoTurn(45, m_DrivetrainSubsystem));
 
     auto.addOption("Drive 100 inch", new AutoDrive(100, m_DrivetrainSubsystem));

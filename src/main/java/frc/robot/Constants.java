@@ -98,7 +98,7 @@ public final class Constants {
 
     public static final class ShooterConstants{
         
-        public static final double kShoot_highRPM = 2900; //Initiation
+        public static final double kShoot_highRPM = 3200; //Initiation
 
         public static final double kLoaderSpeed = 0.2; //DETROIT COMP = 0.2 GOOD
      

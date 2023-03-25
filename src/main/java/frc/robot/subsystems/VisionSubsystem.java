@@ -66,16 +66,18 @@ public class VisionSubsystem extends SubsystemBase {
 
   public void takeSnapshot(){
     //reset snapshot mode
-    NetworkTableInstance.getDefault().getTable("limelight").getEntry("ledMode").setNumber(0); 
+    NetworkTableInstance.getDefault().getTable("limelight").getEntry("snapshot").setNumber(1); 
+  }
 
+  public void resetSnapshot(){
     //take one snapshot
-    NetworkTableInstance.getDefault().getTable("limelight").getEntry("ledMode").setNumber(1); 
+    NetworkTableInstance.getDefault().getTable("limelight").getEntry("snapshot").setNumber(0); 
   }
   public double calculateDistance(double angle){
     double B;
     B = 72;
     double A;
-    A = B/ Math.tan(angle * Math.PI / 180);
+    A = B/ Math.tan((angle + 54) * Math.PI / 180);
         
     return A;
   }
